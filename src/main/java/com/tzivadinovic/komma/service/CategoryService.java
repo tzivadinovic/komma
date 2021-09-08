@@ -1,19 +1,19 @@
 package com.tzivadinovic.komma.service;
 
-import com.tzivadinovic.komma.entity.*;
-import java.util.Collection;
+import com.tzivadinovic.komma.entity.Category;
+
 import java.util.List;
 
 public interface CategoryService {
 
-	List<Category> findAll();
+    List<Category> findAll();
 
-	Category save(Category category);
+    Category save(Category category);
 
-	Category update(Category category);
+    Category update(Category category);
 
-	Category findById(Integer categoryId);
+    Category findById(Integer categoryId);
 
-	void deleteById(Integer categoryId);
+    void deleteById(Integer categoryId);
 
 }

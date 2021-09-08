@@ -1,19 +1,19 @@
 package com.tzivadinovic.komma.service;
 
-import com.tzivadinovic.komma.entity.*;
-import java.util.Collection;
+import com.tzivadinovic.komma.entity.PostTag;
+
 import java.util.List;
 
 public interface PostTagService {
 
-	List<PostTag> findAll();
+    List<PostTag> findAll();
 
-	PostTag save(PostTag postTag);
+    PostTag save(PostTag postTag);
 
-	PostTag update(PostTag postTag);
+    PostTag update(PostTag postTag);
 
-	PostTag findById(Integer postTagId);
+    PostTag findById(Integer postTagId);
 
-	void deleteById(Integer postTagId);
+    void deleteById(Integer postTagId);
 
 }

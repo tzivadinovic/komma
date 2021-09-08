@@ -1,19 +1,19 @@
 package com.tzivadinovic.komma.service;
 
-import com.tzivadinovic.komma.entity.*;
-import java.util.Collection;
+import com.tzivadinovic.komma.entity.Role;
+
 import java.util.List;
 
 public interface RoleService {
 
-	List<Role> findAll();
+    List<Role> findAll();
 
-	Role save(Role role);
+    Role save(Role role);
 
-	Role update(Role role);
+    Role update(Role role);
 
-	Role findById(Integer roleId);
+    Role findById(Integer roleId);
 
-	void deleteById(Integer roleId);
+    void deleteById(Integer roleId);
 
 }
