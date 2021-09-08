@@ -1,4 +1,4 @@
-package com.tzivadinovic.komma.komma;
+package com.tzivadinovic.komma;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -8,7 +8,7 @@
         <version>2.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.tzivadinovic.komma</groupId>
+    <groupId>com.tzivadinovic</groupId>
     <artifactId>komma</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>komma</name>
