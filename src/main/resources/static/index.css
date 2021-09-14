@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #2E3440;
+}
+
+body {
+    font-family: "Fira Code Medium", sans-serif;
+}
+
+.login {
+    height: 50vh;
+    margin: 0 auto;
+    width: 25%;
+    transform: translateY(calc(50vh - 50%));
+}
+
+.logo {
+    text-align: center;
+    color: #434C5E;
+}
+
+.btn {
+    background-color: #5E81AC !important;
+    font-family: "Fira Code Medium", sans-serif;
+}
+
+.btn:hover {
+    background-color: #435c7b !important;
+}
+
+.no-acc {
+    font-size: 15px;
+    color: #434C5E;
+}
+
+input[type="text"],
+input[type="password"]{
+    color: white;
+    font-family: "Fira Code Medium", sans-serif !important;
+}
+
+input[type="text"]:focus + label,
+input[type="text"]:focus:disabled + label,
+input[type="password"]:focus + label {
+    color: #A3BE8C !important;
+}
+
+input[type="text"]:focus,
+input[type="text"]:focus:disabled,
+input[type="password"]:focus {
+    border-bottom: 1px solid #A3BE8C !important;
+    box-shadow: 0 1px 0 0 #A3BE8C !important;
+}
+
+input[type="text"].valid,
+input[type="text"].valid:disabled,
+input[type="password"].valid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+input[type="text"].invalid,
+input[type="text"].invalid:disabled,
+input[type="password"].invalid {
+/ / border-bottom: 1 px solid #000;
+/ / box-shadow: 0 1 px 0 0 #000;
+}

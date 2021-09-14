@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RoleController {
     private final RoleService roleService;
 
-    @GetMapping
+    @GetMapping("/roles")
     public String getRoles(Model model) {
         model.addAttribute("roles", roleService.findAll());
         return "roles/roles";
