@@ -14,14 +14,14 @@
     <div class="login">
         <div class="row">
             <h1 class="logo">komma|blog</h1>
-            <form class="col s12">
+            <form class="col s12" method="post" th:action="@{/perform_login}">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="username" type="text" class="validate">
+                        <input id="username" type="text" class="validate" name="username">
                         <label for="username">Username</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
+                        <input id="password" type="password" class="validate" name="password">
                         <label for="password">Password</label>
                     </div>
                 </div>

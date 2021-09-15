@@ -130,3 +130,7 @@ input[type="password"].invalid {
     background-color: #5E81AC;
     transition: .5s;
 }
+
+.back-button{
+    background-color: #5E81AC;
+}
