@@ -11,6 +11,12 @@ body {
     font-family: "Fira Code Medium", sans-serif;
 }
 
+.wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .login {
     height: 50vh;
     margin: 0 auto;
@@ -76,4 +82,21 @@ input[type="password"].invalid {
 
 .brand-logo{
     margin-left: 0.5%;
+}
+
+.posts{
+    color: #D8DEE9;
+}
+
+.category-link{
+    font-size: 1em;
+}
+
+.post-title{
+    color: #5E81AC;
+}
+
+.tag{
+    background-color: #D8DEE9;
+    color: #435c7b;
 }
