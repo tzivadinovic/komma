@@ -96,7 +96,37 @@ input[type="password"].invalid {
     color: #5E81AC;
 }
 
+.post-post-title{
+    font-size: 3em;
+    color: #5E81AC;
+}
+
+.post-content{
+    color: #D8DEE9;
+}
+
 .tag{
     background-color: #D8DEE9;
     color: #435c7b;
+}
+
+.markdown h1, .markdown h2{
+    font-size: 2em;
+}
+
+.pagination li.active{
+    background-color: #5E81AC;
+}
+
+.pagination{
+    text-align: center;
+}
+
+.page-item a{
+    color: #D8DEE9 !important;
+}
+
+.page-item:not(.disabled):hover{
+    background-color: #5E81AC;
+    transition: .5s;
 }

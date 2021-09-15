@@ -3,7 +3,7 @@
     <!--/*@thymesVar id="tag" type="com.tzivadinovic.komma.entity.Tag"*/-->
     <a href=""><small th:text="${post.category.name}" class="category-link"></small></a>
     <h5 th:text="${#temporals.format(post.createdDate, 'dd.MM.yyyy.')}"></h5>
-    <h4 th:text="${post.title}" class="post-title"></h4>
+    <a th:href="${'post/' + post.id}"><h4 th:text="${post.title}" class="post-title"></h4></a>
     <p th:text="${post.excerpt}"></p>
     <small class="chip mt-3 mb-5 tag" th:each="tag : ${post.tags}" th:text="${tag.name}"></small>
 </div>

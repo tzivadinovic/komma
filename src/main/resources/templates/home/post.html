@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <meta charset="UTF-8">
+    <title th:text="${post.title}"></title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<nav th:replace="../fragments/nav.html"></nav>
+<div>
+    <div class="container pt-5">
+        <h1 th:text="${post.title}" class="post-post-title"></h1>
+        <div id="content" th:text="${post.content}" class="post-content markdown"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const content = document.getElementById('content');
+        content.innerHTML = marked(content.innerHTML);
+    });
+</script>
+</body>
+</html>
+
