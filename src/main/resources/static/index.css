@@ -134,3 +134,16 @@ input[type="password"].invalid {
 .back-button{
     background-color: #5E81AC;
 }
+
+.new-post{
+    background-color: #5E81AC;
+}
+
+.new-post:hover{
+    background-color: #435c7b;
+    transition: .5s;
+}
+
+.editor-toolbar a{
+    color: white !important;
+}

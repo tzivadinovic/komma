@@ -24,7 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID");
     }
 
     @Bean

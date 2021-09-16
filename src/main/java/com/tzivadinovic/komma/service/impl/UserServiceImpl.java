@@ -1,12 +1,15 @@
 package com.tzivadinovic.komma.service.impl;
 
 import com.tzivadinovic.komma.entity.User;
+import com.tzivadinovic.komma.repository.RoleRepository;
 import com.tzivadinovic.komma.repository.UserRepository;
 import com.tzivadinovic.komma.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,10 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> findAll() {
@@ -30,6 +37,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setDisplayName(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        user.setRoles(roleRepository.findAllByRole("AUTHOR")); //default
         return userRepository.save(user);
     }
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Komma | Blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <link href="index.css" rel="stylesheet">
+</head>
+<body>
+<nav th:insert="../fragments/nav.html"></nav>
+<div class="container pt-5">
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Write the title of your post" id="title" type="text" class="validate"
+                           name="title">
+                    <label for="title">Title</label>
+                </div>
+                <div class="input-field col s6">
+                    <select name="category" th:field="${categories}">
+                        <option value="" disabled selected>Category</option>
+                        <option value="" th:each="category : ${categories}" th:value="${category.id}"
+                                th:text="${category.name}"></option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button class="btn waves-effect waves-light right mt-3" type="submit" name="action">Post
+        <i class="material-icons right">done</i>
+    </button>
+</div>
+</body>
+<script>
+    var simplemde = new SimpleMDE();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('select');
+        const instances = M.FormSelect.init(elems, {});
+    });
+</script>
+</html>
