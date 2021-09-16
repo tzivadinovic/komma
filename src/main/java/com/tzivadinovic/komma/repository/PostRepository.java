@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAllByCategory_Id(Integer categoryId);
+
+    List<Post> findAllByUser_Username(String username);
 }

@@ -22,4 +22,6 @@ public interface PostService {
 
     List<Post> findAllByCategoryId(Integer categoryId);
 
+    List<Post> findAllByUsername(String username);
+
 }

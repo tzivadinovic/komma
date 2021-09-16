@@ -11,7 +11,18 @@ body {
     font-family: "Fira Code Medium", sans-serif;
 }
 
-.wrapper{
+main {
+}
+
+footer {
+    background-color: #3B4252 !important;
+}
+
+.nav-wrapper {
+    background-color: #5E81AC;
+}
+
+.wrapper {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -44,7 +55,8 @@ body {
 }
 
 input[type="text"],
-input[type="password"]{
+input[type="password"],
+input[type="email"] {
     color: white;
     font-family: "Fira Code Medium", sans-serif !important;
 }
@@ -76,91 +88,111 @@ input[type="password"].invalid {
 / / box-shadow: 0 1 px 0 0 #000;
 }
 
-.nav-wrapper{
-    background-color: #5E81AC;
-}
 
-.brand-logo{
+.brand-logo {
     margin-left: 0.5%;
 }
 
-.posts{
+.posts {
     color: #D8DEE9;
 }
 
-.category-link{
+.category-link {
     font-size: 1em;
 }
 
-.post-title{
+.post-title {
     color: #5E81AC;
 }
 
-.post-post-title{
+.post-post-title {
     font-size: 3em;
     color: #5E81AC;
 }
 
-.post-content{
+.post-content {
     color: #D8DEE9;
 }
 
-.tag{
+.tag {
     background-color: #D8DEE9;
     color: #435c7b;
 }
 
-.markdown h1, .markdown h2{
+.markdown h1, .markdown h2 {
     font-size: 2em;
 }
 
-.pagination li.active{
+.pagination li.active {
     background-color: #5E81AC;
 }
 
-.pagination{
+.pagination {
     text-align: center;
 }
 
-.page-item a{
+.page-item a {
     color: #D8DEE9 !important;
 }
 
-.page-item:not(.disabled):hover{
+.page-item:not(.disabled):hover {
     background-color: #5E81AC;
     transition: .5s;
 }
 
-.back-button{
+.back-button {
     background-color: #5E81AC;
 }
 
-.new-post{
+.new-post {
     background-color: #5E81AC;
 }
 
-.new-post:hover{
+.new-post:hover {
     background-color: #435c7b;
     transition: .5s;
 }
 
-.editor-toolbar a{
+.editor-toolbar a {
     color: white !important;
 }
 
-.chips .input{
+.chips .input {
     color: white !important;
 }
-.dropdown-content.select-dropdown{
+
+.dropdown-content.select-dropdown {
     background-color: #5E81AC !important;
     color: white;
 }
 
-.dropdown-content.select-dropdown span{
+.dropdown-content.select-dropdown span {
     color: white !important;
 }
 
-footer{
+
+.profile-content {
+    color: white;
+}
+
+.profile-content p {
+    font-size: 1.5em;
+}
+
+.tabs {
     background-color: #3B4252 !important;
+}
+
+.tabs .indicator {
+    background-color: #5E81AC !important;
+}
+
+.tabs a:focus.active {
+    background-color: #5E81AC !important;
+}
+
+.tabs a {
+    color: white !important;
+    text-transform: capitalize;
 }
 

@@ -17,6 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .formLogin()
                 .loginPage("/")
                 .defaultSuccessUrl("/home")
@@ -24,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/home")
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID");
     }

@@ -1,19 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Komma | Blog</title>
-  <div th:include="../fragments/head-fragment.html"></div>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-  <link href="index.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Komma | Blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <link href="index.css" rel="stylesheet">
 </head>
 <body>
-<nav th:replace="../fragments/nav.html"></nav>
-<div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
+<!--<div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>-->
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <div class="container pt-5">
+        <!--/*@thymesVar id="email" type="com.tzivadinovic.komma.entity.User"*/-->
+        <div class="profile-content">
+            <h2 th:text="'Welcome ' + ${user.get().getFirstName()} + '!'"></h2>
+            <!--        <p th:text="${user.get().getFirstName()} + ' ' + ${user.get().getLastName()}"></p>-->
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a class="active" href="#personal">Personal information</a></li>
+                        <li class="tab col s6"><a href="#security">Security</a></li>
+                    </ul>
+                </div>
+                <div id="personal" class="col s12">
+                    <div class="row mt-5">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="firstName" type="text" class="validate" th:value="${user.get().getFirstName()}">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="lastName" type="text" class="validate" th:value="${user.get().getLastName()}">
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="email" type="email" class="validate" th:value="${user.get().getEmail()}">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="username" type="text" class="validate" th:value="${user.get().getUsername()}">
+                                    <label for="username">Username</label>
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Submit
+                                <i class="material-icons right">done</i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div id="security" class="col s12">
+                    <div class="row mt-5">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="oldPassword" type="password" class="validate">
+                                    <label for="oldPassword">Old password</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="newPassword" type="password" class="validate">
+                                    <label for="newPassword">New password</label>
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Submit
+                                <i class="material-icons right">done</i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
 <footer th:replace="../fragments/footer.html"></footer>
+<script>
+    const options = {};
+    document.addEventListener("DOMContentLoaded", () => {
+        var instance = M.Tabs.init(document.querySelector(".tabs"), options);
+    });
+</script>
 </body>
 </html>

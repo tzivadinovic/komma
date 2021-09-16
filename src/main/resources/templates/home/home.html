@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav th:replace="../fragments/nav.html"></nav>
-<div>
+<main>
     <div class="container pt-5">
         <div th:if="${posts.getSize() > 0}" class="posts">
             <a class="btn-floating btn-large waves-effect waves-light right new-post" th:href="@{/new-post}"><i class="material-icons">add</i></a>
@@ -46,7 +46,7 @@
             </ul>
         </div>
     </div>
-</div>
+</main>
 <footer th:replace="../fragments/footer.html"></footer>
 </body>
 </html>

@@ -34,9 +34,15 @@ public class PostController {
         return "redirect:/home";
     }
 
-    @GetMapping("/findPostsByCategory/{categoryId}")
+    @GetMapping("/find-posts-by-category/{categoryId}")
     public String findPostsByCategory(@PathVariable Integer categoryId, Model model){
         model.addAttribute("posts", postService.findAllByCategoryId(categoryId));
         return "home/category";
+    }
+
+    @GetMapping("/my-posts/{username}")
+    public String findPostsByUsername(@PathVariable String username, Model model){
+        model.addAttribute("userPosts", postService.findAllByUsername(username));
+        return "home/my-posts";
     }
 }

@@ -52,5 +52,10 @@ public class PostServiceImpl implements PostService {
         return postRepository.findAllByCategory_Id(categoryId);
     }
 
+    @Override
+    public List<Post> findAllByUsername(String username) {
+        return postRepository.findAllByUser_Username(username);
+    }
+
 
 }

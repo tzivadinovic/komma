@@ -8,19 +8,23 @@
 </head>
 <body>
 <nav th:replace="../fragments/nav.html"></nav>
-<div>
-    <div class="container pt-5">
-        <a href="/home"><button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons">arrow_back</i></button></a>
+<main>
+    <div class="container pt-5 mb-5">
+        <a href="/home">
+            <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons">arrow_back</i>
+            </button>
+        </a>
         <h1 th:text="${post.title}" class="post-post-title"></h1>
         <div id="content" th:text="${post.content}" class="post-content markdown"></div>
     </div>
-</div>
+</main>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const content = document.getElementById('content');
         content.innerHTML = marked(content.innerHTML);
     });
 </script>
+<footer th:replace="../fragments/footer.html"></footer>
 </body>
 </html>
 
