@@ -47,5 +47,10 @@ public class PostServiceImpl implements PostService {
         postRepository.deleteById(postId);
     }
 
+    @Override
+    public List<Post> findAllByCategoryId(Integer categoryId) {
+        return postRepository.findAllByCategory_Id(categoryId);
+    }
+
 
 }

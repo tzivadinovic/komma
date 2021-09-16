@@ -147,3 +147,20 @@ input[type="password"].invalid {
 .editor-toolbar a{
     color: white !important;
 }
+
+.chips .input{
+    color: white !important;
+}
+.dropdown-content.select-dropdown{
+    background-color: #5E81AC !important;
+    color: white;
+}
+
+.dropdown-content.select-dropdown span{
+    color: white !important;
+}
+
+footer{
+    background-color: #3B4252 !important;
+}
+

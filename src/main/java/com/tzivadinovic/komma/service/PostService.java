@@ -20,4 +20,6 @@ public interface PostService {
 
     void deleteById(Integer postId);
 
+    List<Post> findAllByCategoryId(Integer categoryId);
+
 }

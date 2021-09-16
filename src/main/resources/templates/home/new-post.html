@@ -13,9 +13,10 @@
 </head>
 <body>
 <nav th:insert="../fragments/nav.html"></nav>
-<div class="container pt-5">
+<div class="container pt-5 mt-5">
     <div class="row">
-        <form class="col s12">
+        <!--/*@thymesVar id="post" type="com.tzivadinovic.komma.entity.Post"*/-->
+        <form class="col s12" method="post" th:action="@{/createPost}" th:object="${post}">
             <div class="row">
                 <div class="input-field col s6">
                     <input placeholder="Write the title of your post" id="title" type="text" class="validate"
@@ -23,21 +24,25 @@
                     <label for="title">Title</label>
                 </div>
                 <div class="input-field col s6">
-                    <select name="category" th:field="${categories}">
-                        <option value="" disabled selected>Category</option>
-                        <option value="" th:each="category : ${categories}" th:value="${category.id}"
+                    <select th:field="${categories}">
+                        <option value="" selected>Category</option>
+                        <option value="" th:each="category : ${categories}"
                                 th:text="${category.name}"></option>
                     </select>
                 </div>
             </div>
+
+            <textarea name="content" id="" cols="30" rows="10"></textarea>
+
+            <label>Tags</label>
+            <div class="chips chips-autocomplete" th:name="tags"></div>
+
+            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Post
+                <i class="material-icons right">done</i>
+            </button>
         </form>
     </div>
-    <textarea name="" id="" cols="30" rows="10"></textarea>
-    <button class="btn waves-effect waves-light right mt-3" type="submit" name="action">Post
-        <i class="material-icons right">done</i>
-    </button>
 </div>
-</body>
 <script>
     var simplemde = new SimpleMDE();
 </script>
@@ -47,4 +52,24 @@
         const instances = M.FormSelect.init(elems, {});
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tags = document.querySelectorAll(".chips");
+        fetch("/api/tags").then(res => res.json())
+            .then(res => {
+                const data = {};
+                res.forEach(tag => Object.assign(data, {[tag.name]: null}));
+                M.Chips.init(tags, {
+                    autocompleteOptions: {
+                        data,
+                        limit: Infinity,
+                        minLength: 1
+                    }
+                });
+            });
+    });
+</script>
+<footer th:replace="../fragments/footer.html"></footer>
+</body>
+
 </html>

@@ -22,7 +22,7 @@ public class Post extends Auditable {
     @ManyToOne
     private User user;
     @JoinColumn(name = "category_fk", referencedColumnName = "category_id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
     @Column(name = "title")
     private String title;
@@ -30,7 +30,7 @@ public class Post extends Auditable {
     private String content;
     @Column(name = "excerpt")
     private String excerpt;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_fk"), inverseJoinColumns = @JoinColumn(name = "tag_fk"))
     private List<Tag> tags;
 
