@@ -1,11 +1,12 @@
 package com.tzivadinovic.komma.service.impl;
 
 import com.tzivadinovic.komma.entity.User;
+import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
+import com.tzivadinovic.komma.exception.PasswordsNotMatchesException;
 import com.tzivadinovic.komma.repository.RoleRepository;
 import com.tzivadinovic.komma.repository.UserRepository;
 import com.tzivadinovic.komma.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,9 +21,7 @@ import java.util.NoSuchElementException;
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> findAll() {
@@ -53,9 +52,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.deleteById(userId);
     }
 
+    @Override
+    public User changeUserPassword(User user, ChangePasswordDTO dto) {
+        if (!passwordEncoder.matches(dto.getOldPassword(), user.getPassword())) {
+            throw new PasswordsNotMatchesException();
+        } else if (!dto.getNewPassword().equals(dto.getRepeatedPassword())) {
+            throw new PasswordsNotMatchesException.RepeatedAndNewPasswordDontMatches();
+        } else {
+            user.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+        }
+        return userRepository.save(user);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(s));
     }
 }
+
+
+

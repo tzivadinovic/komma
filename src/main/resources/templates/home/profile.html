@@ -32,11 +32,13 @@
                         <form class="col s12">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id="firstName" type="text" class="validate" th:value="${user.get().getFirstName()}">
+                                    <input id="firstName" type="text" class="validate"
+                                           th:value="${user.get().getFirstName()}">
                                     <label for="firstName">First Name</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="lastName" type="text" class="validate" th:value="${user.get().getLastName()}">
+                                    <input id="lastName" type="text" class="validate"
+                                           th:value="${user.get().getLastName()}">
                                     <label for="lastName">Last Name</label>
                                 </div>
                             </div>
@@ -46,11 +48,13 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="username" type="text" class="validate" th:value="${user.get().getUsername()}">
+                                    <input id="username" type="text" class="validate"
+                                           th:value="${user.get().getUsername()}">
                                     <label for="username">Username</label>
                                 </div>
                             </div>
-                            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">
+                                Submit
                                 <i class="material-icons right">done</i>
                             </button>
                         </form>
@@ -58,25 +62,30 @@
                 </div>
                 <div id="security" class="col s12">
                     <div class="row mt-5">
-                        <form class="col s12">
+                        <form class="col s12" method="post" th:action="@{/update-password}">
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="oldPassword" type="password" class="validate">
+                                <div class="input-field col s4">
+                                    <input id="oldPassword" type="password" class="validate" name="oldPassword" th:name="oldPassword">
                                     <label for="oldPassword">Old password</label>
                                 </div>
-                                <div class="input-field col s6">
-                                    <input id="newPassword" type="password" class="validate">
+                                <div class="input-field col s4">
+                                    <input id="newPassword" type="password" class="validate" name="newPassword" th:name="newPassword">
                                     <label for="newPassword">New password</label>
                                 </div>
+                                <div class="input-field col s4">
+                                    <input id="repeatedPassword" type="password" class="validate"
+                                           name="repeatedPassword" th:name="repeatedPassword">
+                                    <label for="repeatedPassword">Repeat password</label>
+                                </div>
                             </div>
-                            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">
+                                Submit
                                 <i class="material-icons right">done</i>
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </main>
