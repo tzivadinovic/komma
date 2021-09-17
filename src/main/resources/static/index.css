@@ -202,3 +202,13 @@ input[type="password"].invalid {
     text-transform: capitalize;
 }
 
+.excerpt{
+    font-family: "Fira Code Medium", sans-serif;
+    color: white !important;
+}
+
+.excerpt:focus{
+    border-bottom: 1px solid #A3BE8C !important;
+    box-shadow: 0 1px 0 0 #A3BE8C !important;
+}
+
