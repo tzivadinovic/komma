@@ -37,12 +37,14 @@ public class PostController {
     @GetMapping("/categories/{category}")
     public String findPostsByCategory(@PathVariable String category, Model model) {
         model.addAttribute("categoryPosts", postService.findAllByCategory(category));
+        model.addAttribute("categoryName", category);
         return "home/posts-by-category";
     }
 
     @GetMapping("/tags/{tag}")
     public String findPostsByTag(@PathVariable String tag, Model model) {
         model.addAttribute("tagPosts", postService.findAllByTags(tag));
+        model.addAttribute("tagName", tag);
         return "home/posts-by-tag";
     }
 

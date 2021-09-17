@@ -37,4 +37,9 @@ public class HomeController {
         model.addAttribute("post", postService.findById(postId));
         return "home/post";
     }
+
+    @RequestMapping("/dashboard")
+    public String dashboard() {
+        return "home/dashboard";
+    }
 }

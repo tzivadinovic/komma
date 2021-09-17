@@ -8,6 +8,7 @@
 <body>
 <nav th:replace="../fragments/nav.html"></nav>
 <div class="container pt-5 mb-5">
+    <h3 th:text="'By tag => ' + ${tagName}" class="mb-5 tag-name"></h3>
     <div th:if="${tagPosts.size() > 0}" class="posts">
         <div th:each="post : ${tagPosts}"
              th:include="../fragments/post-list-item.html :: postListItem(tagPosts)"></div>
