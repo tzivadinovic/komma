@@ -1,0 +1,14 @@
+<table class="responsive-table mt-5">
+    <thead>
+    <tr>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="role : ${roles}">
+        <td th:text="${role.role}"></td>
+    </tr>
+    </tbody>
+</table>

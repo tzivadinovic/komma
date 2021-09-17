@@ -1,0 +1,14 @@
+<table class="responsive-table mt-5">
+    <thead>
+    <tr>
+        <th>Tag Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tag : ${tags}">
+        <td th:text="${tag.name}"></td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+<table class="responsive-table mt-5">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Display name</th>
+        <th>Roles</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.displayName}"></td>
+        <td th:text="${user.roles}"></td>
+    </tr>
+    </tbody>
+</table>

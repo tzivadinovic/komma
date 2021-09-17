@@ -5,10 +5,13 @@
 
 html {
     background-color: #2E3440;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     font-family: "Fira Code Medium", sans-serif;
+    margin: 0 0 100px;
 }
 
 main {
@@ -16,6 +19,12 @@ main {
 
 footer {
     background-color: #3B4252 !important;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: -13em;
 }
 
 .nav-wrapper {
@@ -176,6 +185,24 @@ input[type="password"].invalid {
     color: white !important;
 }
 
+.chips .dropdown-content {
+    background-color: #5E81AC !important;
+    color: white;
+}
+
+.chips.dropdown-content:hover {
+    background-color: #5E81AC !important;
+    color: white;
+}
+
+.chips .dropdown-content span {
+    color: white !important;
+}
+
+.chips .dropdown-content span:hover {
+    color: white !important;
+}
+
 
 .profile-content {
     color: white;
@@ -224,8 +251,17 @@ input[type="password"].invalid {
     color: white;
 }
 
-.tabs .empty{
-    background-color: #2E3440 !important;
-    height: 100%;
+/*.tabs .empty {*/
+/*    background-color: #2E3440 !important;*/
+/*    height: 100%;*/
+/*}*/
+
+table{
+    color: white !important;
+}
+
+table th,td{
+    text-align: center;
+
 }
 

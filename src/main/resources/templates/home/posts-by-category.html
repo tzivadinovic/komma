@@ -8,6 +8,10 @@
 <body>
 <nav th:replace="../fragments/nav.html"></nav>
 <div class="container pt-5 mb-5">
+    <a href="/home">
+        <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons">arrow_back</i>
+        </button>
+    </a>
     <h3 th:text="'Category => ' + ${categoryName}" class="mb-5 category-name"></h3>
     <div th:if="${categoryPosts.size() > 0}" class="posts">
         <div th:each="post : ${categoryPosts}"

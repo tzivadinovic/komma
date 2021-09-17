@@ -1,7 +1,6 @@
 package com.tzivadinovic.komma.controller;
 
-import com.tzivadinovic.komma.domain.CustomPageImpl;
-import com.tzivadinovic.komma.service.PostService;
+import com.tzivadinovic.komma.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class HomeController {
     private final PostService postService;
+    private final UserService userService;
+    private final TagService tagService;
+    private final CategoryService categoryService;
+    private final RoleService roleService;
 
     @RequestMapping("/home")
     public String home(Model model, @RequestParam(required = false) String page, @RequestParam(required = false) String size) {
@@ -39,7 +42,12 @@ public class HomeController {
     }
 
     @RequestMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("tags", tagService.findAll());
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("posts", postService.findAll());
         return "home/dashboard";
     }
 }

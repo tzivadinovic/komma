@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TagController {
     private final TagService tagService;
 
-    @GetMapping("/tags")
-    public String getAllTags(Model model) {
-        model.addAttribute("tags", tagService.findAll());
-        return "";
-    }
+//    @GetMapping("/dashboard")
+//    public String getAllTags(Model model) {
+//        model.addAttribute("tags", tagService.findAll());
+//        return "home/dashboard";
+//    }
 }

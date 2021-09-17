@@ -21,6 +21,12 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
 
+//    @GetMapping("/dashboard")
+//    public String getAllUsers(Model model) {
+//        model.addAttribute("users", userService.findAll());
+//        return "home/dashboard";
+//    }
+
     @PostMapping("/createUser")
     public String createUser(@Validated User user, BindingResult result) {
         if (result.hasErrors()) return "";
