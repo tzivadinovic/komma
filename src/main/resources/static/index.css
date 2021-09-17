@@ -119,6 +119,12 @@ input[type="password"].invalid {
     color: #435c7b;
 }
 
+.tag:hover{
+    background-color: #5E81AC;
+    color: #D8DEE9;
+    transition: .2s;
+}
+
 .markdown h1, .markdown h2 {
     font-size: 2em;
 }

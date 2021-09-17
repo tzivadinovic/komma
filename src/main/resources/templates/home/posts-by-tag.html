@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Komma | Blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<nav th:replace="../fragments/nav.html"></nav>
+<div class="container pt-5 mb-5">
+    <div th:if="${tagPosts.size() > 0}" class="posts">
+        <div th:each="post : ${tagPosts}"
+             th:include="../fragments/post-list-item.html :: postListItem(tagPosts)"></div>
+    </div>
+
+</div>
+</body>
+</html>

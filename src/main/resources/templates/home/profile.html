@@ -18,7 +18,7 @@
     <div class="container pt-5">
         <!--/*@thymesVar id="email" type="com.tzivadinovic.komma.entity.User"*/-->
         <div class="profile-content">
-            <h2 th:text="'Welcome ' + ${user.get().getFirstName()} + '!'"></h2>
+            <h2 th:text="'Welcome ' + ${user.get().getFirstName()} + '!'" class="mb-5"></h2>
             <!--        <p th:text="${user.get().getFirstName()} + ' ' + ${user.get().getLastName()}"></p>-->
             <div class="row">
                 <div class="col s12">
@@ -29,27 +29,28 @@
                 </div>
                 <div id="personal" class="col s12">
                     <div class="row mt-5">
-                        <form class="col s12">
+                        <form class="col s12" method="post" th:action="@{/update-user}" th:object="${user}">
                             <div class="row">
+                                <input type="hidden" th:field="*{id}" />
                                 <div class="input-field col s6">
                                     <input id="firstName" type="text" class="validate"
-                                           th:value="${user.get().getFirstName()}">
+                                            th:field="*{firstName}">
                                     <label for="firstName">First Name</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="lastName" type="text" class="validate"
-                                           th:value="${user.get().getLastName()}">
+                                            th:field="*{lastName}">
                                     <label for="lastName">Last Name</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id="email" type="email" class="validate" th:value="${user.get().getEmail()}">
+                                    <input id="email" type="email" class="validate" th:field="*{email}">
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="username" type="text" class="validate"
-                                           th:value="${user.get().getUsername()}">
+                                            th:field="*{username}">
                                     <label for="username">Username</label>
                                 </div>
                             </div>

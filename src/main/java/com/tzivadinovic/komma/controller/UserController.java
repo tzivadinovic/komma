@@ -41,4 +41,11 @@ public class UserController {
         model.addAttribute("", userService.changeUserPassword(user, dto));
         return "redirect:/";
     }
+
+    //TODO osmisliti kako da se samo odredjena polja menjaju iako ima vise atributa
+    @PostMapping("/update-user")
+    public String updateUser(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("", userService.update(user));
+        return "redirect:/home";
+    }
 }

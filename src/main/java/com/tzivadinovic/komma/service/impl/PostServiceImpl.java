@@ -1,20 +1,25 @@
 package com.tzivadinovic.komma.service.impl;
 
 import com.tzivadinovic.komma.entity.Post;
+import com.tzivadinovic.komma.entity.Tag;
 import com.tzivadinovic.komma.repository.PostRepository;
+import com.tzivadinovic.komma.repository.TagRepository;
 import com.tzivadinovic.komma.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
+    private final TagRepository tagRepository;
 
     @Override
     public List<Post> findAll() {
@@ -48,13 +53,20 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAllByCategoryId(Integer categoryId) {
-        return postRepository.findAllByCategory_Id(categoryId);
+    public List<Post> findAllByCategory(String category) {
+        return postRepository.findAllByCategory_Name(category);
     }
 
     @Override
     public List<Post> findAllByUsername(String username) {
         return postRepository.findAllByUser_Username(username);
+    }
+
+    @Override
+    public List<Post> findAllByTags(String tagName) {
+        Optional<Tag> tag = tagRepository.findByName(tagName);
+        if (tag.isEmpty()) return new ArrayList<>();
+        return postRepository.findAllByTags_Name(tagName);
     }
 
 
