@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="category-add" class="modal category-add">
+    <div class="modal-content">
+        <form method="post" th:action="@{/save-category}">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Category name" id="addName" type="text"
+                           class="validate">
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Save
+                <i class="material-icons right">done</i>
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
