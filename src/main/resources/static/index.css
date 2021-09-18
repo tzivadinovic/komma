@@ -328,3 +328,12 @@ table.highlight > tbody > tr:hover {
 .nav-icon {
     font-size: 10em;
 }
+
+.no-posts-message{
+    text-align: center;
+    color: white;
+}
+
+.no-posts a{
+    font-size: 2em;
+}

@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -26,14 +25,12 @@ public class PostController {
         return "home/new-post";
     }
 
-    @PostMapping("/createPost")
+    @PostMapping("/create-post")
     public String createPost(@AuthenticationPrincipal User user,
-                             @ModelAttribute PostDTO dto,
-                             BindingResult result,
+                             @ModelAttribute PostDTO post,
                              Model model) {
-        if (result.hasErrors()) return "";
-        model.addAttribute("post", postService.save(dto, user));
-        return "home/home";
+        model.addAttribute("post", postService.save(post, user));
+        return "redirect:/home";
     }
 
     @GetMapping("/categories/{category}")

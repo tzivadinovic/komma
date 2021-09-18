@@ -12,10 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +28,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> findAll(Pageable pageable) {
-        return postRepository.findAll(pageable);
+        return postRepository.findAllByOrderByCreatedDateDesc(pageable);
     }
 
     @Override
@@ -40,14 +38,30 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post save(Post post) {
+//        Post post = new Post();
+//        post.setUser(user);
+//        post.setCategory(dto.getCategory());
+//        post.setTags(dto.getTags());
+//        post.setContent(dto.getContent());
+//        post.setExcerpt(dto.getExcerpt());
+//        post.setTitle(dto.getTitle());
+        return postRepository.save(post);
+    }
+
+    @Override
     public Post save(PostDTO dto, User user) {
         Post post = new Post();
-        post.setUser(user);
         post.setCategory(dto.getCategory());
-//        post.setTags(dto.getTags());
+        post.setTags(Arrays.stream(dto.getTags()
+                .split(",\\s*"))
+                .map(tagRepository::findByName)
+                .flatMap(Optional::stream)
+                .collect(Collectors.toList()));
         post.setContent(dto.getContent());
         post.setExcerpt(dto.getExcerpt());
         post.setTitle(dto.getTitle());
+        post.setUser(user);
         return postRepository.save(post);
     }
 
@@ -68,7 +82,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> findAllByUsername(String username) {
-        return postRepository.findAllByUser_Username(username);
+        return postRepository.findAllByUser_UsernameOrderByCreatedDateDesc(username);
     }
 
     @Override

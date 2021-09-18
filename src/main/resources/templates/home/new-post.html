@@ -15,8 +15,8 @@
 <nav th:insert="../fragments/nav.html"></nav>
 <div class="container pt-5 mt-5">
     <div class="row">
-        <!--/*@thymesVar id="post" type="com.tzivadinovic.komma.entity.Post"*/-->
-        <form class="col s12" method="post" th:action="@{/createPost}" th:object="${post}">
+        <!--/*@thymesVar id="post" type="com.tzivadinovic.komma.entity.dto.PostDTO"*/-->
+        <form class="col s12" method="post" th:action="@{/create-post}" th:object="${post}">
             <div class="row">
                 <div class="input-field col s6">
                     <input placeholder="Write the title of your post (max=96 characters)" id="title" type="text"
@@ -25,11 +25,11 @@
                     <label for="title">Title</label>
                 </div>
                 <div class="input-field col s6">
+                    <!--/*@thymesVar id="category" type="com.tzivadinovic.komma.entity.Category"*/-->
                     <select th:object="${category}" name="category">
                         <option value="" selected>Category</option>
                         <option th:each="category : ${categories}"
-                                th:text="${category.name}" th:value="${category}" th:name="${category}"
-                                name="category"></option>
+                                th:text="${category.name}" th:value="${category.id}"></option>
                     </select>
                 </div>
             </div>
@@ -42,8 +42,13 @@
 
             <textarea name="content" id="content" cols="30" rows="10"></textarea>
 
-            <label>Tags</label>
-            <div class="chips chips-autocomplete" th:name="tags" th:value="tags"></div>
+            <div class="input-field col s12">
+                <select multiple id="tags" name="tags">
+                    <option disabled>Tags</option>
+                    <option th:each="tag : ${tags}" th:text="${tag.name}" th:value="${tag.name}"></option>
+                </select>
+                <label>Tags</label>
+            </div>
 
             <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Post
                 <i class="material-icons right">done</i>
@@ -64,12 +69,20 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const tagsInput = document.getElementById("tags2");
+        tagsInput.addEventListener("change", console.log(tagsInput.nodeValue));
         const tags = document.querySelectorAll(".chips");
         fetch("/api/tags").then(res => res.json())
             .then(res => {
                 const data = {};
                 res.forEach(tag => Object.assign(data, {[tag.name]: null}));
                 M.Chips.init(tags, {
+                    // onChipAdd: function (el, chip) {
+                    //     // tagsInput.nodeValue = this.chipData.map(tag => tag.name).join(',')
+                    // },
+                    // onChipDelete: function (el, chip) {
+                    //     tagsInput.nodeValue = this.chipData.map(tag => tag.name).join(',')
+                    // },
                     autocompleteOptions: {
                         data,
                         limit: Infinity,

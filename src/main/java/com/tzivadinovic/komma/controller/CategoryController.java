@@ -2,6 +2,7 @@ package com.tzivadinovic.komma.controller;
 
 import com.tzivadinovic.komma.entity.Category;
 import com.tzivadinovic.komma.service.CategoryService;
+import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
+    private final TagService tagService;
 
     @GetMapping("/dashboard/categories")
     public String getCategoriesOnDashboard(Model model) {
@@ -26,6 +28,7 @@ public class CategoryController {
     @GetMapping("/new-post")
     public String getCategories(Model model) {
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("tags", tagService.findAll());
         return "/home/new-post";
     }
 

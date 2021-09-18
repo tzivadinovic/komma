@@ -14,6 +14,8 @@ public interface PostService {
 
     Page<Post> findAll(Pageable pageable);
 
+    Post save(Post post);
+
     Post save(PostDTO dto, User user);
 
     Post update(Post post);

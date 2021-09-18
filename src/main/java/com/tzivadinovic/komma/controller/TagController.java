@@ -19,10 +19,10 @@ public class TagController {
         return "dashboard/tags";
     }
 
-//    @GetMapping("/dashboard")
+//    @GetMapping("/home/new-post")
 //    public String getAllTags(Model model) {
 //        model.addAttribute("tags", tagService.findAll());
-//        return "home/dashboard";
+//        return "home/new-post";
 //    }
 
     @PostMapping("/save-tag")
