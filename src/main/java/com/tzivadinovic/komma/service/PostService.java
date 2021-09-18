@@ -2,6 +2,8 @@ package com.tzivadinovic.komma.service;
 
 import com.tzivadinovic.komma.entity.Post;
 import com.tzivadinovic.komma.entity.Tag;
+import com.tzivadinovic.komma.entity.User;
+import com.tzivadinovic.komma.entity.dto.PostDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +16,7 @@ public interface PostService {
 
     Page<Post> findAll(Pageable pageable);
 
-    Post save(Post post);
+    Post save(PostDTO dto, User user);
 
     Post update(Post post);
 

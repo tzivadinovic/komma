@@ -1,24 +1,23 @@
 package com.tzivadinovic.komma.controller;
 
-import com.tzivadinovic.komma.entity.Category;
-import com.tzivadinovic.komma.entity.Post;
-import com.tzivadinovic.komma.entity.Tag;
+import com.tzivadinovic.komma.entity.User;
+import com.tzivadinovic.komma.entity.dto.PostDTO;
 import com.tzivadinovic.komma.repository.TagRepository;
+import com.tzivadinovic.komma.service.CategoryService;
 import com.tzivadinovic.komma.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
     private final TagRepository tagRepository;
+    private final CategoryService categoryService;
 
     @RequestMapping("/new-post")
     public String newPost() {
@@ -26,12 +25,13 @@ public class PostController {
     }
 
     @PostMapping("/createPost")
-    public String createPost(@Validated Post post, @Validated Category category, @RequestBody List<Tag> tags, BindingResult result) {
+    public String createPost(@AuthenticationPrincipal User user,
+                             @ModelAttribute PostDTO dto,
+                             BindingResult result,
+                             Model model) {
         if (result.hasErrors()) return "";
-        post.setCategory(category);
-        post.setTags(tags);
-        postService.save(post);
-        return "redirect:/home";
+        model.addAttribute("post", postService.save(dto, user));
+        return "home/home";
     }
 
     @GetMapping("/categories/{category}")

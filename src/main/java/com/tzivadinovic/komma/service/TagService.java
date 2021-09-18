@@ -16,4 +16,6 @@ public interface TagService {
 
     void deleteById(Integer tagId);
 
+    List<String> findTagsForPost(Integer postId);
+
 }

@@ -25,4 +25,9 @@ public class Role extends Auditable implements GrantedAuthority {
     public String getAuthority() {
         return String.format("ROLE_%S", getRole());
     }
+
+    @Override
+    public String toString() {
+        return role;
+    }
 }

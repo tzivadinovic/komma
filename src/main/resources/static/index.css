@@ -256,12 +256,40 @@ input[type="password"].invalid {
 /*    height: 100%;*/
 /*}*/
 
-table{
+table {
     color: white !important;
 }
 
-table th,td{
-    text-align: center;
-
+table th {
+    border-radius: 0;
 }
 
+table th, td {
+    text-align: center;
+    border-radius: 0;
+}
+
+table.highlight > tbody > tr:hover {
+    background-color: #5E81AC;
+}
+
+.action-btn:hover {
+    color: white;
+    transition: .2s;
+}
+
+.modal{
+ background-color: #2E3440 !important;
+}
+
+.category-add{
+    width: 30em;
+}
+
+.tag-add{
+    width: 30em;
+}
+
+.role-add{
+    width: 30em;
+}
