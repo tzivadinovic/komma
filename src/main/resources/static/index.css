@@ -247,6 +247,37 @@ input[type="password"].invalid {
     color: white;
 }
 
+.dashboard-content-dash {
+    transform: translateY(calc(50vh - 90%));
+    color: #ECEFF4;
+}
+
+.blue-grey.darken-1 {
+    background-color: #5E81AC !important;
+}
+
+.card {
+    display: flex;
+    cursor: pointer;
+    transition: ease-in-out .2s;
+}
+
+.card:hover{
+    transform: scale(0.95);
+    transition: .2s;
+}
+
+.card h2 {
+    color: #ECEFF4;
+    float: right;
+}
+
+.card i {
+    color: #ECEFF4;
+    float: left;
+}
+
+
 .dashboard-content h1 {
     color: white;
 }
@@ -292,4 +323,8 @@ table.highlight > tbody > tr:hover {
 
 .role-add {
     width: 30em;
+}
+
+.nav-icon {
+    font-size: 10em;
 }
