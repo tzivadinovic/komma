@@ -1,14 +1,12 @@
 package com.tzivadinovic.komma.service;
 
 import com.tzivadinovic.komma.entity.Post;
-import com.tzivadinovic.komma.entity.Tag;
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.PostDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Set;
 
 public interface PostService {
 

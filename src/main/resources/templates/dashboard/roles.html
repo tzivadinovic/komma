@@ -1,14 +1,89 @@
-<table class="responsive-table mt-5">
-    <thead>
-    <tr>
-        <th>Role</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Komma | Blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <div class="container pt-5">
+        <div class="dashboard-content">
+            <h1 class="mt-2 center">Dashboard</h1>
+            <div class="row">
+                <div>
+                    <ul class="tabs">
+                        <li class="col s1 empty"></li>
+                        <li class="tab col l2"><a class="active" th:href="@{/dashboard/posts}">Posts</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/tags}">Tags</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/categories}">Categories</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/users}">Users</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/roles}">Roles</a></li>
+                        <li class="col s1 empty"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <table class="responsive-table mt-5 highlight">
+            <thead>
+            <tr>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
 
-    <tbody>
-    <tr th:each="role : ${roles}">
-        <td th:text="${role.role}"></td>
-    </tr>
-    </tbody>
-</table>
+            <tbody>
+            <tr th:each="role : ${roles}">
+                <td th:text="${role.role}"></td>
+                <td>
+                    <a href="#role-edit" class="modal-trigger"><i class="material-icons action-btn">create</i></a>
+                    <a href="#role-delete" class="modal-trigger"><i class="material-icons action-btn">delete</i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="#role-add" class="btn-floating btn-large waves-effect waves-light right new-post mt-3 modal-trigger"><i
+                class="material-icons">add</i></a>
+        <div id="role-add" class="modal role-add">
+            <div class="modal-content">
+                <form method="post" th:action="@{/save-role}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Role name" id="role" type="text"
+                                   class="validate"
+                                   name="role">
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Save
+                        <i class="material-icons right">done</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="role-delete" class="modal">
+            <div class="modal-content">
+
+            </div>
+        </div>
+
+
+    </div>
+</main>
+<footer th:replace="../fragments/footer.html"></footer>
+<!--<script>-->
+<!--    const options = {};-->
+<!--    document.addEventListener("DOMContentLoaded", () => {-->
+<!--        var instance = M.Tabs.init(document.querySelector(".tabs"), options);-->
+<!--    });-->
+<!--</script>-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+</script>
+</body>
+</html>

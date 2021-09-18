@@ -2,8 +2,6 @@ package com.tzivadinovic.komma.controller;
 
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.PostDTO;
-import com.tzivadinovic.komma.repository.TagRepository;
-import com.tzivadinovic.komma.service.CategoryService;
 import com.tzivadinovic.komma.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
-    private final TagRepository tagRepository;
-    private final CategoryService categoryService;
+
+    @GetMapping("/dashboard/posts")
+    public String getPostsOnDashboard(Model model) {
+        model.addAttribute("posts", postService.findAll());
+        return "dashboard/posts";
+    }
 
     @RequestMapping("/new-post")
     public String newPost() {

@@ -9,7 +9,8 @@
 <nav th:replace="../fragments/nav.html"></nav>
 <div class="container pt-5 mb-5">
     <div th:if="${userPosts.size() > 0}" class="posts">
-        <div th:each="post : ${userPosts}" th:include="../fragments/post-list-item.html :: postListItem(userPosts)"></div>
+        <div th:each="post : ${userPosts}"
+             th:include="../fragments/post-list-item.html :: postListItem(userPosts)"></div>
     </div>
 
 </div>

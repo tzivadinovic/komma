@@ -1,24 +1,87 @@
-<table class="responsive-table mt-5">
-    <thead>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Username</th>
-        <th>Display name</th>
-        <th>Roles</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Komma | Blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <div class="container pt-5">
+        <div class="dashboard-content">
+            <h1 class="mt-2 center">Dashboard</h1>
+            <div class="row">
+                <div>
+                    <ul class="tabs">
+                        <li class="col s1 empty"></li>
+                        <li class="tab col l2"><a class="active" th:href="@{/dashboard/posts}">Posts</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/tags}">Tags</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/categories}">Categories</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/users}">Users</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/roles}">Roles</a></li>
+                        <li class="col s1 empty"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <table class="responsive-table mt-5 highlight">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Display name</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
 
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.lastName}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.displayName}"></td>
-        <td th:text="${user.roles}"></td>
-    </tr>
-    </tbody>
-</table>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.displayName}"></td>
+                <td th:text="${user.roles}"></td>
+                <td>
+                    <a href="#user-edit" class="modal-trigger"><i class="material-icons action-btn">create</i></a>
+                    <a href="#user-delete" class="modal-trigger"><i class="material-icons action-btn">delete</i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn-floating btn-large waves-effect waves-light right new-post mt-3"><i class="material-icons">add</i></a>
+        <div id="user-edit" class="modal">
+            <div class="modal-content">
+
+            </div>
+        </div>
+
+        <div id="user-delete" class="modal">
+            <div class="modal-content">
+
+            </div>
+        </div>
+
+
+    </div>
+</main>
+<footer th:replace="../fragments/footer.html"></footer>
+<!--<script>-->
+<!--    const options = {};-->
+<!--    document.addEventListener("DOMContentLoaded", () => {-->
+<!--        var instance = M.Tabs.init(document.querySelector(".tabs"), options);-->
+<!--    });-->
+<!--</script>-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+</script>
+</body>
+</html>

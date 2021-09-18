@@ -31,15 +31,15 @@
                     <div class="row mt-5">
                         <form class="col s12" method="post" th:action="@{/update-user}" th:object="${user}">
                             <div class="row">
-                                <input type="hidden" th:field="*{id}" />
+                                <input type="hidden" th:field="*{id}"/>
                                 <div class="input-field col s6">
                                     <input id="firstName" type="text" class="validate"
-                                            th:field="*{firstName}">
+                                           th:field="*{firstName}">
                                     <label for="firstName">First Name</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="lastName" type="text" class="validate"
-                                            th:field="*{lastName}">
+                                           th:field="*{lastName}">
                                     <label for="lastName">Last Name</label>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="username" type="text" class="validate"
-                                            th:field="*{username}">
+                                           th:field="*{username}">
                                     <label for="username">Username</label>
                                 </div>
                             </div>
@@ -66,11 +66,13 @@
                         <form class="col s12" method="post" th:action="@{/update-password}">
                             <div class="row">
                                 <div class="input-field col s4">
-                                    <input id="oldPassword" type="password" class="validate" name="oldPassword" th:name="oldPassword">
+                                    <input id="oldPassword" type="password" class="validate" name="oldPassword"
+                                           th:name="oldPassword">
                                     <label for="oldPassword">Old password</label>
                                 </div>
                                 <div class="input-field col s4">
-                                    <input id="newPassword" type="password" class="validate" name="newPassword" th:name="newPassword">
+                                    <input id="newPassword" type="password" class="validate" name="newPassword"
+                                           th:name="newPassword">
                                     <label for="newPassword">New password</label>
                                 </div>
                                 <div class="input-field col s4">

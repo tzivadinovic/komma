@@ -3,66 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Komma | Blog</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    <link href="index.css" rel="stylesheet">
+    <div th:include="../fragments/head-fragment.html"></div>
 </head>
 <body>
 <main>
     <nav th:replace="../fragments/nav.html"></nav>
     <div class="container pt-5">
         <div class="dashboard-content">
-            <h1 class="mt-5 center">Dashboard</h1>
+            <h1 class="mt-2 center">Dashboard</h1>
             <div class="row">
                 <div>
                     <ul class="tabs">
                         <li class="col s1 empty"></li>
-                        <li class="tab col l2"><a class="active" href="#posts">Posts</a></li>
-                        <li class="tab col l2"><a href="#tags">Tags</a></li>
-                        <li class="tab col l2"><a href="#categories">Categories</a></li>
-                        <li class="tab col l2"><a href="#users">Users</a></li>
-                        <li class="tab col l2"><a href="#roles">Roles</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/posts}">Posts</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/tags}">Tags</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/categories}">Categories</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/users}">Users</a></li>
+                        <li class="tab col l2"><a th:href="@{/dashboard/roles}">Roles</a></li>
                         <li class="col s1 empty"></li>
                     </ul>
-                </div>
-                <div id="posts" class="col s12">
-                    <div class="row mt-5">
-                        <div th:insert="dashboard/posts.html"></div>
-                    </div>
-                </div>
-                <div id="tags" class="col s12">
-                    <div class="row mt-5">
-                        <div th:insert="dashboard/tags.html"></div>
-                    </div>
-                </div>
-                <div id="categories" class="col s12">
-                    <div class="row mt-5">
-                        <div th:insert="dashboard/categories.html"></div>
-                    </div>
-                </div>
-                <div id="users" class="col s12">
-                    <div class="row mt-5">
-                        <div th:insert="dashboard/users.html"></div>
-                    </div>
-                </div>
-                <div id="roles" class="col s12">
-                    <div class="row mt-5">
-                        <div th:insert="dashboard/roles.html"></div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
 <footer th:replace="../fragments/footer.html"></footer>
-<script>
-    const options = {};
-    document.addEventListener("DOMContentLoaded", () => {
-        var instance = M.Tabs.init(document.querySelector(".tabs"), options);
-    });
-</script>
+<!--<script>-->
+<!--    const options = {};-->
+<!--    document.addEventListener("DOMContentLoaded", () => {-->
+<!--        var instance = M.Tabs.init(document.querySelector(".tabs"), options);-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

@@ -278,18 +278,18 @@ table.highlight > tbody > tr:hover {
     transition: .2s;
 }
 
-.modal{
- background-color: #2E3440 !important;
+.modal {
+    background-color: #2E3440 !important;
 }
 
-.category-add{
+.category-add {
     width: 30em;
 }
 
-.tag-add{
+.tag-add {
     width: 30em;
 }
 
-.role-add{
+.role-add {
     width: 30em;
 }

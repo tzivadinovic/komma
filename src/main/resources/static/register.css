@@ -39,15 +39,15 @@ body {
 
 input[type="text"],
 input[type="password"],
-input[type="email"]{
+input[type="email"] {
     color: white;
     font-family: "Fira Code Medium", sans-serif !important;
 }
 
 input[type="text"]:focus + label,
 input[type="text"]:focus:disabled + label,
-input[type="password"]:focus + label ,
-input[type="email"]:focus + label{
+input[type="password"]:focus + label,
+input[type="email"]:focus + label {
     color: #A3BE8C !important;
 }
 
@@ -70,15 +70,15 @@ input[type="email"].valid {
 input[type="text"].invalid,
 input[type="text"].invalid:disabled,
 input[type="password"].invalid,
-input[type="email"].invalid{
+input[type="email"].invalid {
 / / border-bottom: 1 px solid #000;
 / / box-shadow: 0 1 px 0 0 #000;
 }
 
-.nav-wrapper{
+.nav-wrapper {
     background-color: #5E81AC;
 }
 
-.brand-logo{
+.brand-logo {
     margin-left: 0.5%;
 }

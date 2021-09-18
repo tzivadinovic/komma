@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RoleController {
     private final RoleService roleService;
 
+    @GetMapping("/dashboard/roles")
+    public String getRolesOnDashboard(Model model) {
+        model.addAttribute("roles", roleService.findAll());
+        return "dashboard/roles";
+    }
+
     @GetMapping("/roles")
     public String getRoles(Model model) {
         model.addAttribute("roles", roleService.findAll());
