@@ -28,7 +28,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> findAll(Pageable pageable) {
-        return postRepository.findAllByOrderByCreatedDateDesc(pageable);
+        return postRepository.findAllByPublishedTrueOrderByCreatedDateDesc(pageable);
     }
 
     @Override
@@ -81,8 +81,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAllByUsername(String username) {
-        return postRepository.findAllByUser_UsernameOrderByCreatedDateDesc(username);
+    public Page<Post> findAllByUsername(String username, Pageable pageable) {
+        return postRepository.findAllByUser_UsernameOrderByCreatedDateDesc(username, pageable);
     }
 
     @Override

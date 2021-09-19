@@ -7,7 +7,7 @@
                 <li sec:authorize="!isAuthenticated()"
                     th:if="${#httpServletRequest.requestURI == '/register' || #httpServletRequest.requestURI == '/home'}">
                     <a href="/">Login</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{|/my-posts/${#authentication.name}|}"
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/my-posts}"
                                                          th:if="${!#httpServletRequest.requestURI.startsWith('/my-posts')}">My
                     posts</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{|/user/${#authentication.name}|}">Profile</a></li>

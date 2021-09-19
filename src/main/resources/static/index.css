@@ -307,6 +307,7 @@ table.highlight > tbody > tr:hover {
 .action-btn:hover {
     color: white;
     transition: .2s;
+    cursor: pointer;
 }
 
 .modal {
@@ -336,4 +337,29 @@ table.highlight > tbody > tr:hover {
 
 .no-posts a{
     font-size: 2em;
+}
+
+#tags{
+}
+
+.dropdown-content.select-dropdown {
+    background-color: white !important;
+    color: #5E81AC !important;
+
+}
+
+ul.dropdown-content.select-dropdown li span {
+    color: #5E81AC !important;
+}
+
+.lever{
+    background-color: #7dace5 !important;
+}
+
+.lever::after{
+    background-color: #0056b3 !important;
+}
+
+.action-btn{
+    color: #0056b3;
 }

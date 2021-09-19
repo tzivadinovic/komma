@@ -30,6 +30,8 @@ public class Post extends Auditable {
     private String content;
     @Column(name = "excerpt")
     private String excerpt;
+    @Column(name = "published")
+    private Boolean published = false;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_fk"), inverseJoinColumns = @JoinColumn(name = "tag_fk"))
     private List<Tag> tags;

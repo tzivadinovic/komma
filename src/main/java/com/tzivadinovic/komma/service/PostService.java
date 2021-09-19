@@ -26,7 +26,7 @@ public interface PostService {
 
     List<Post> findAllByCategory(String category);
 
-    List<Post> findAllByUsername(String username);
+    Page<Post> findAllByUsername(String username, Pageable pageable);
 
     List<Post> findAllByTags(String tagName);
 

@@ -9,13 +9,47 @@
 <nav th:replace="../fragments/nav.html"></nav>
 <div class="container pt-5 mb-5">
     <div class="no-posts">
-        <h3 th:if="${userPosts.size() == 0}" class="no-posts-message mb-5">You have no posts <br></h3>
+        <h3 th:if="${userPosts.getSize() == 0}" class="no-posts-message mb-5">You have no posts <br></h3>
         <a sec:authorize="isAuthenticated()" class="btn-floating btn-large waves-effect waves-light new-post"
            th:href="@{/new-post}"><i class="material-icons">add</i></a>
     </div>
-    <div th:if="${userPosts.size() > 0}" class="posts mt-5">
+    <div class="posts mt-5">
         <div th:each="post : ${userPosts}"
              th:include="../fragments/post-list-item.html :: postListItem(userPosts)"></div>
+    </div>
+    <div aria-label="Pagination" th:if="${userPosts.totalPages > 0}">
+        <ul class="pagination justify-content-center font-weight-medium mt-5 mb-5">
+            <li class="page-item" th:classappend="${userPosts.number == 0} ? 'disabled'">
+                <a class="page-link svg-icon"
+                   th:href="@{/my-posts?page={id}(id=${userPosts.number < 1 ? 1 : userPosts.number - 1})}"
+                   aria-label="Previous"
+                   title="Previous Page" rel="tooltip">
+                    Previous
+                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20"></span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${i == userPosts.number + 1} ? 'active'"
+                th:each="i : ${#numbers.sequence( userPosts.number + 1, ((userPosts.totalPages > 10 + userPosts.number) ? userPosts.number + 10 : userPosts.totalPages), 1)}">
+                <a class="page-link" th:href="@{/my-posts?page={id}(id=${i - 1})}"
+                   th:text="${i}"
+                   th:title="${'Page '+ i}"
+                   rel="tooltip"></a>
+            </li>
+            <li class="page-item disabled" th:if="${userPosts.number + 10 < userPosts.totalPages}">
+                <a class="page-link svg-icon" href="#">
+                    <span data-feather="more-horizontal" width="20" height="20"></span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${userPosts.number + 1 == userPosts.totalPages} ? 'disabled'">
+                <a class="page-link svg-icon"
+                   th:href="@{/my-posts?page={id}(id=${userPosts.number + 1})}"
+                   aria-label="Next"
+                   title="Next Page" rel="tooltip">
+                    Next
+                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"></span>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 </body>

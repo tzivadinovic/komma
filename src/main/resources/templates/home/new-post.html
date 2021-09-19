@@ -92,6 +92,12 @@
             });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.autocomplete');
+        var instances = M.Autocomplete.init(elems, {});
+    });
+</script>
 <footer th:replace="../fragments/footer.html"></footer>
 </body>
 

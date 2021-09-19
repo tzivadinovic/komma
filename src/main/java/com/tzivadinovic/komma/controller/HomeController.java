@@ -42,12 +42,31 @@ public class HomeController {
     }
 
     @RequestMapping("/dashboard")
-    public String dashboard(Model model) {
+    public String dashboard(Model model, @RequestParam(required = false) String page, @RequestParam(required = false) String size) {
         model.addAttribute("tags", tagService.findAll());
         model.addAttribute("users", userService.findAll());
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("posts", postService.findAll());
         return "home/dashboard";
     }
+
+    @GetMapping("/dashboard/posts")
+    public String dashboardPosts(Model model,
+                                 @RequestParam(required = false) String page,
+                                 @RequestParam(required = false) String size) {
+        int pageNumber = 0;
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException ignored) {
+        }
+        int sizeCount = 5;
+        try {
+            sizeCount = Integer.parseInt(size);
+        } catch (NumberFormatException ignored) {
+        }
+        model.addAttribute("dashPosts", postService.findAll(PageRequest.of(pageNumber, sizeCount)));
+        return "dashboard/posts";
+    }
+
+
 }

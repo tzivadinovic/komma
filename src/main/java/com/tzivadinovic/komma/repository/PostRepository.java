@@ -12,9 +12,9 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAllByCategory_Name(String category);
 
-    List<Post> findAllByUser_UsernameOrderByCreatedDateDesc(String username);
+    Page<Post> findAllByUser_UsernameOrderByCreatedDateDesc(String username, Pageable pageable);
 
     List<Post> findAllByTags_Name(String tagName);
 
-    Page<Post> findAllByOrderByCreatedDateDesc(Pageable pageable);
+    Page<Post> findAllByPublishedTrueOrderByCreatedDateDesc(Pageable pageable);
 }

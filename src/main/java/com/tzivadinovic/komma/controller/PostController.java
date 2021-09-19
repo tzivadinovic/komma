@@ -4,6 +4,7 @@ import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.PostDTO;
 import com.tzivadinovic.komma.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/dashboard/posts")
-    public String getPostsOnDashboard(Model model) {
-        model.addAttribute("posts", postService.findAll());
-        return "dashboard/posts";
-    }
+//    @GetMapping("/dashboard/posts")
+//    public String getPostsOnDashboard(Model model) {
+//        model.addAttribute("posts", postService.findAll());
+//        return "dashboard/posts";
+//    }
 
     @RequestMapping("/new-post")
     public String newPost() {
@@ -47,9 +48,22 @@ public class PostController {
         return "home/posts-by-tag";
     }
 
-    @GetMapping("/my-posts/{username}")
-    public String findPostsByUsername(@PathVariable String username, Model model) {
-        model.addAttribute("userPosts", postService.findAllByUsername(username));
+    @GetMapping("/my-posts")
+    public String findPostsByUsername(@AuthenticationPrincipal User user,
+                                      Model model,
+                                      @RequestParam(required = false) String page,
+                                      @RequestParam(required = false) String size) {
+        int pageNumber = 0;
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException ignored) {
+        }
+        int sizeCount = 5;
+        try {
+            sizeCount = Integer.parseInt(size);
+        } catch (NumberFormatException ignored) {
+        }
+        model.addAttribute("userPosts", postService.findAllByUsername(user.getUsername(), PageRequest.of(pageNumber, sizeCount)));
         return "home/my-posts";
     }
 }
