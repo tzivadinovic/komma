@@ -2,6 +2,7 @@ package com.tzivadinovic.komma.controller;
 
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
+import com.tzivadinovic.komma.entity.dto.RegisterDTO;
 import com.tzivadinovic.komma.repository.UserRepository;
 import com.tzivadinovic.komma.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +10,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +27,10 @@ public class UserController {
         return "dashboard/users";
     }
 
-    @PostMapping("/createUser")
-    public String createUser(@Validated User user, BindingResult result) {
+    @PostMapping("/create-user")
+    public String createUser(@ModelAttribute RegisterDTO dto, BindingResult result) {
         if (result.hasErrors()) return "";
-        userService.save(user);
+        userService.save(dto);
         return "redirect:/";
     }
 

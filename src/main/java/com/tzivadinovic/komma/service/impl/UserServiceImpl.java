@@ -2,6 +2,7 @@ package com.tzivadinovic.komma.service.impl;
 
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
+import com.tzivadinovic.komma.entity.dto.RegisterDTO;
 import com.tzivadinovic.komma.exception.PasswordsNotMatchesException;
 import com.tzivadinovic.komma.repository.RoleRepository;
 import com.tzivadinovic.komma.repository.UserRepository;
@@ -35,11 +36,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User save(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setDisplayName(String.format("%s %s", user.getFirstName(), user.getLastName()));
+    public User save(RegisterDTO dto) {
+        User user = new User();
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        if (!dto.getPassword().equals(dto.getRepeatedPassword())) {
+            throw new PasswordsNotMatchesException.RepeatedAndNewPasswordDontMatches();
+        } else {
+            user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
+        user.setDisplayName(String.format("%s %s", dto.getFirstName(), dto.getLastName()));
         user.setRoles(roleRepository.findAllByRole("AUTHOR")); //default
         return userRepository.save(user);
+
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setDisplayName(String.format("%s %s", user.getFirstName(), user.getLastName()));
+//        user.setRoles(roleRepository.findAllByRole("AUTHOR")); //default
+//        return userRepository.save(user);
     }
 
     @Override

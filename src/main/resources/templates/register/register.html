@@ -14,7 +14,7 @@
     <div class="row">
         <h1 class="logo">komma|blog</h1>
         <!--/*@thymesVar id="user" type="com.tzivadinovic.komma.entity.User"*/-->
-        <form class="col s12" method="post" th:action="@{/createUser}" th:object="${user}">
+        <form class="col s12" method="post" th:action="@{/create-user}" th:object="${user}">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="firstname" type="text" class="validate" name="firstName">
@@ -35,6 +35,10 @@
                 <div class="input-field col s12">
                     <input id="password" type="password" class="validate" name="password">
                     <label for="password">Password</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="repeatedPassword" type="password" class="validate" name="repeatedPassword">
+                    <label for="repeatedPassword">Repeat password</label>
                 </div>
             </div>
             <button class="btn waves-effect waves-light right" type="submit" name="action">Register

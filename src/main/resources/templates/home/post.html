@@ -14,8 +14,27 @@
             <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons">arrow_back</i>
             </button>
         </a>
+        <h5 th:text="${#temporals.format(post.createdDate, 'dd.MM.yyyy.')}"></h5>
+        Author:
+        <a href="" th:text="${post.user.displayName}"></a>
         <h1 th:text="${post.title}" class="post-post-title"></h1>
         <div id="content" th:text="${post.content}" class="post-content markdown"></div>
+        <h3 class="comments mt-5">Comments</h3>
+        <div class="row">
+            <form class="col" method="post" th:action="@{/save-comment/posts/{id}(id=${post.id})}">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <textarea id="textarea1" placeholder="Write your comment"
+                                  class="materialize-textarea comment-area" name="content"></textarea>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Comment
+                    <i class="material-icons right">done</i>
+                </button>
+            </form>
+            <!--/*@thymesVar id="comment" type="com.tzivadinovic.komma.entity.Comment"*/-->
+            <h4 th:each="comment : ${comments}" th:text="${comment.content}"></h4>
+        </div>
     </div>
 </main>
 <script>

@@ -10,8 +10,10 @@
 <main>
     <div class="container pt-5">
         <div th:if="${posts.getSize() > 0}" class="posts">
-            <a sec:authorize="isAuthenticated()" class="btn-floating btn-large waves-effect waves-light right new-post"
-               th:href="@{/new-post}"><i class="material-icons">add</i></a>
+            <div class="center">
+                <a sec:authorize="isAuthenticated()" class="waves-effect waves-light btn-large new-post"
+                   th:href="@{/new-post}"><i class="material-icons right">add</i>New post</a>
+            </div>
             <div th:each="post : ${posts}" th:include="../fragments/post-list-item.html :: postListItem(post)"></div>
         </div>
         <div aria-label="Pagination" th:if="${posts.totalPages > 0}">

@@ -15,7 +15,7 @@ body {
     height: 70vh;
     margin: 0 auto;
     width: 25%;
-    transform: translateY(calc(50vh - 50%));
+    transform: translateY(calc(50vh - 60%));
 }
 
 .logo {
