@@ -113,7 +113,7 @@ input[type="password"].invalid {
     transition: ease-in-out .2s;
 }
 
-.category-link:hover{
+.category-link:hover {
     color: #7aa8e2;
     transition: .2s;
 }
@@ -323,6 +323,30 @@ table.highlight > tbody > tr:hover {
     background-color: #5E81AC;
 }
 
+.tags-table{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.tags-table table {
+    width: 50%;
+}
+
+.categories-table {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-table table {
+    width: 50%;
+}
+
 .action-btn:hover {
     color: white;
     transition: .2s;
@@ -412,13 +436,13 @@ ul.dropdown-content.select-dropdown li span {
     color: white;
 }
 
-.comments{
+.comments {
     color: #5E81AC;
 }
 
-.comment-area{
+.comment-area {
     font-family: "Fira Code Medium", sans-serif;
-    width: 40em!important;
+    width: 40em !important;
     color: white !important;
 }
 
@@ -427,9 +451,11 @@ ul.dropdown-content.select-dropdown li span {
     box-shadow: 0 1px 0 0 #A3BE8C !important;
 }
 
-.post-hr{
-    display: block; height: 1px;
-    border: 0; border-top: 0.14em solid #5E81AC;
+.post-hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 0.14em solid #5E81AC;
 }
 
 

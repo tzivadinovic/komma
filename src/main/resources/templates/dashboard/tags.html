@@ -26,27 +26,63 @@
                 </div>
             </div>
         </div>
-        <table class="responsive-table mt-5 highlight">
-            <thead>
-            <tr>
-                <th>Tag Name</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
+        <div class="tags-table">
+            <table class="responsive-table mt-5 highlight">
+                <thead>
+                <tr>
+                    <th>Tag Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr th:each="tag : ${tags}">
-                <!--/*@thymesVar id="tag" type="com.tzivadinovic.komma.entity.Tag"*/-->
-                <td th:text="${tag.name}"></td>
-                <td>
-                    <a class="modal-trigger"><i class="material-icons action-btn">create</i></a>
-                    <a class="modal-trigger"><i class="material-icons action-btn">delete</i></a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <tbody>
+                <tr th:each="tag : ${dashTags}">
+                    <!--/*@thymesVar id="tag" type="com.tzivadinovic.komma.entity.Tag"*/-->
+                    <td th:text="${tag.name}"></td>
+                    <td>
+                        <a class="modal-trigger"><i class="material-icons action-btn">create</i></a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
         <a href="#create-tag" class="btn-floating btn-large waves-effect waves-light right new-post mt-3 modal-trigger"><i
                 class="material-icons">add</i></a>
+        <div aria-label="Pagination" th:if="${dashTags.totalPages > 0}">
+            <ul class="pagination justify-content-center font-weight-medium mt-5 mb-5">
+                <li class="page-item" th:classappend="${dashTags.number == 0} ? 'disabled'">
+                    <a class="page-link svg-icon"
+                       th:href="@{/dashboard/tags?page={id}(id=${dashTags.number < 1 ? 1 : dashTags.number - 1})}"
+                       aria-label="Previous"
+                       title="Previous Page" rel="tooltip">
+                        Previous
+                        <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20"></span>
+                    </a>
+                </li>
+                <li class="page-item" th:classappend="${i == dashTags.number + 1} ? 'active'"
+                    th:each="i : ${#numbers.sequence( dashTags.number + 1, ((dashTags.totalPages > 10 + dashTags.number) ? dashTags.number + 10 : dashTags.totalPages), 1)}">
+                    <a class="page-link" th:href="@{/dashboard/tags?page={id}(id=${i - 1})}"
+                       th:text="${i}"
+                       th:title="${'Page '+ i}"
+                       rel="tooltip"></a>
+                </li>
+                <li class="page-item disabled" th:if="${dashTags.number + 10 < dashTags.totalPages}">
+                    <a class="page-link svg-icon" href="#">
+                        <span data-feather="more-horizontal" width="20" height="20"></span>
+                    </a>
+                </li>
+                <li class="page-item" th:classappend="${dashTags.number + 1 == dashTags.totalPages} ? 'disabled'">
+                    <a class="page-link svg-icon"
+                       th:href="@{/dashboard/tags?page={id}(id=${dashTags.number + 1})}"
+                       aria-label="Next"
+                       title="Next Page" rel="tooltip">
+                        Next
+                        <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div id="create-tag" class="modal tag-add">
             <div class="modal-content">
                 <form method="post" th:action="@{/save-tag}">

@@ -4,14 +4,12 @@ import com.tzivadinovic.komma.entity.Category;
 import com.tzivadinovic.komma.service.CategoryService;
 import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,8 +18,20 @@ public class CategoryController {
     private final TagService tagService;
 
     @GetMapping("/dashboard/categories")
-    public String getCategoriesOnDashboard(Model model) {
-        model.addAttribute("categories", categoryService.findAll());
+    public String getCategoriesOnDashboard(Model model,
+                                           @RequestParam(required = false) String page,
+                                           @RequestParam(required = false) String size) {
+        int pageNumber = 0;
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException ignored) {
+        }
+        int sizeCount = 4;
+        try {
+            sizeCount = Integer.parseInt(size);
+        } catch (NumberFormatException ignored) {
+        }
+        model.addAttribute("dashCategories", categoryService.findAll(PageRequest.of(pageNumber, sizeCount)));
         return "dashboard/categories";
     }
 

@@ -6,6 +6,8 @@ import com.tzivadinovic.komma.repository.PostRepository;
 import com.tzivadinovic.komma.repository.TagRepository;
 import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,11 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> findAll() {
         return tagRepository.findAll();
+    }
+
+    @Override
+    public Page<Tag> findAll(Pageable pageable) {
+        return tagRepository.findAll(pageable);
     }
 
     @Override
