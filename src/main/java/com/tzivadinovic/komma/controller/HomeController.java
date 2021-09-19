@@ -64,7 +64,7 @@ public class HomeController {
             sizeCount = Integer.parseInt(size);
         } catch (NumberFormatException ignored) {
         }
-        model.addAttribute("dashPosts", postService.findAll(PageRequest.of(pageNumber, sizeCount)));
+        model.addAttribute("dashPosts", postService.findAllForAdmin(PageRequest.of(pageNumber, sizeCount)));
         return "dashboard/posts";
     }
 

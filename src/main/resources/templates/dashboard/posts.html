@@ -46,12 +46,14 @@
                 <td th:text="${post.title}"></td>
                 <td th:text="${post.tags}"></td>
                 <td>
-                    <div class="switch">
-                        <label>
-                            <input type="checkbox" th:checked="${post.published}">
-                            <span class="lever"></span>
-                        </label>
-                    </div>
+                    <form th:action="@{/update-post-status/{id}(id=${post.id})}" method="post">
+                        <div class="switch">
+                            <label>
+                                <input type="submit" th:class="${post.published} ? 'checked'">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+                    </form>
                 </td>
                 <td>
                     <a class="modal-trigger"><i class="material-icons action-btn">create</i></a>

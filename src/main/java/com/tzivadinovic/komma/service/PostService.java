@@ -20,6 +20,8 @@ public interface PostService {
 
     Post update(Post post);
 
+    Page<Post> findAllForAdmin(Pageable pageable);
+
     Post findById(Integer postId);
 
     void deleteById(Integer postId);
@@ -29,5 +31,7 @@ public interface PostService {
     Page<Post> findAllByUsername(String username, Pageable pageable);
 
     List<Post> findAllByTags(String tagName);
+
+    Post updatePostStatus(Integer postId);
 
 }

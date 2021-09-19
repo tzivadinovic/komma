@@ -32,6 +32,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Page<Post> findAllForAdmin(Pageable pageable) {
+        return postRepository.findAllByOrderByCreatedDateDesc(pageable);
+    }
+
+    @Override
     public Post findById(Integer postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new NoSuchElementException("PostService.notFound"));
@@ -90,6 +95,13 @@ public class PostServiceImpl implements PostService {
         Optional<Tag> tag = tagRepository.findByName(tagName);
         if (tag.isEmpty()) return new ArrayList<>();
         return postRepository.findAllByTags_Name(tagName);
+    }
+
+    @Override
+    public Post updatePostStatus(Integer postId) {
+        Post post = findById(postId);
+        post.setPublished(!post.getPublished());
+        return postRepository.save(post);
     }
 
 

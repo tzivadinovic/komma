@@ -229,6 +229,16 @@ input[type="password"].invalid {
     text-transform: capitalize;
 }
 
+.tabs li {
+    border: 1px solid #5E81AC;
+    border-radius: 1px;
+}
+
+.tabs li:hover {
+    background-color: #466080;
+    transition: .2s;
+}
+
 .excerpt {
     font-family: "Fira Code Medium", sans-serif;
     color: white !important;
@@ -262,7 +272,7 @@ input[type="password"].invalid {
     transition: ease-in-out .2s;
 }
 
-.card:hover{
+.card:hover {
     transform: scale(0.95);
     transition: .2s;
 }
@@ -330,16 +340,16 @@ table.highlight > tbody > tr:hover {
     font-size: 10em;
 }
 
-.no-posts-message{
+.no-posts-message {
     text-align: center;
     color: white;
 }
 
-.no-posts a{
+.no-posts a {
     font-size: 2em;
 }
 
-#tags{
+#tags {
 }
 
 .dropdown-content.select-dropdown {
@@ -352,14 +362,39 @@ ul.dropdown-content.select-dropdown li span {
     color: #5E81AC !important;
 }
 
-.lever{
+.lever {
     background-color: #7dace5 !important;
 }
 
-.lever::after{
+.lever::after {
     background-color: #0056b3 !important;
 }
 
-.action-btn{
+.action-btn {
     color: #0056b3;
 }
+
+.switch input[type=submit] {
+    display: none;
+}
+
+.switch label input[type=submit].checked ~ .lever {
+    background-color: #2f93fa !important;
+}
+
+.switch label input[type=submit].checked ~ .lever:before,
+.switch label input[type=submit].checked ~ .lever:after {
+    transform: translateX(20px);
+    background-color: #0056b3 !important;
+}
+
+.switch label input[type=submit] ~ .lever {
+    background-color: #6c757d !important;
+}
+
+.switch label input[type=submit] ~ .lever:before,
+.switch label input[type=submit] ~ .lever:after {
+    background-color: #6c757d !important;
+    transform: translateX(0px);
+}
+

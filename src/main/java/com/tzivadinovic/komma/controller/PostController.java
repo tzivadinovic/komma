@@ -34,6 +34,12 @@ public class PostController {
         return "redirect:/home";
     }
 
+    @PostMapping("/update-post-status/{postId}")
+    public String updatePostStatus(@PathVariable Integer postId) {
+        postService.updatePostStatus(postId);
+        return "redirect:/dashboard/posts";
+    }
+
     @GetMapping("/categories/{category}")
     public String findPostsByCategory(@PathVariable String category, Model model) {
         model.addAttribute("categoryPosts", postService.findAllByCategory(category));
