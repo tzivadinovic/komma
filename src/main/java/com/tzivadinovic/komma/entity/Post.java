@@ -32,6 +32,8 @@ public class Post extends Auditable {
     private String excerpt;
     @Column(name = "published")
     private Boolean published = false;
+    @Column(name = "url_slug")
+    private String urlSlug;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_fk"), inverseJoinColumns = @JoinColumn(name = "tag_fk"))
     private List<Tag> tags;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Komma | Blog</title>
+    <title>komma | blog</title>
     <div th:include="../fragments/head-fragment.html"></div>
 </head>
 <body>
@@ -36,7 +36,7 @@
                     <th>Username</th>
                     <th>Display name</th>
                     <th>Roles</th>
-                    <th>Actions</th>
+                    <th>Manage</th>
                 </tr>
                 </thead>
 
@@ -51,7 +51,6 @@
                     <td th:text="${user.roles}"></td>
                     <td>
                         <a href="#user-edit" class="modal-trigger"><i class="material-icons action-btn">create</i></a>
-                        <a href="#user-delete" class="modal-trigger"><i class="material-icons action-btn">delete</i></a>
                     </td>
                 </tr>
                 </tbody>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Komma | Blog</title>
+    <title>komma | blog</title>
     <div th:include="../fragments/head-fragment.html"></div>
 </head>
 <body>
@@ -31,7 +31,7 @@
                 <thead>
                 <tr>
                     <th>Tag Name</th>
-                    <th>Actions</th>
+                    <th>Manage</th>
                 </tr>
                 </thead>
 
@@ -40,7 +40,7 @@
                     <!--/*@thymesVar id="tag" type="com.tzivadinovic.komma.entity.Tag"*/-->
                     <td th:text="${tag.name}"></td>
                     <td>
-                        <a class="modal-trigger"><i class="material-icons action-btn">create</i></a>
+                        <a class="modal-trigger"><i class="material-icons tags-action-btn">create</i></a>
                     </td>
                 </tr>
                 </tbody>

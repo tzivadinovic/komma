@@ -18,9 +18,12 @@ public class HomeController {
     private final TagService tagService;
     private final CategoryService categoryService;
     private final RoleService roleService;
+    private final CommentService commentService;
 
     @RequestMapping("/home")
-    public String home(Model model, @RequestParam(required = false) String page, @RequestParam(required = false) String size) {
+    public String home(Model model,
+                       @RequestParam(required = false) String page,
+                       @RequestParam(required = false) String size) {
         int pageNumber = 0;
         try {
             pageNumber = Integer.parseInt(page);
@@ -36,13 +39,27 @@ public class HomeController {
     }
 
     @GetMapping("/post/{postId}")
-    public String post(Model model, @PathVariable Integer postId) {
+    public String post(Model model,
+                       @PathVariable Integer postId,
+                       @RequestParam(required = false) String page,
+                       @RequestParam(required = false) String size) {
+//        int pageNumber = 0;
+//        try {
+//            pageNumber = Integer.parseInt(page);
+//        } catch (NumberFormatException ignored) {
+//        }
+//        int sizeCount = 4;
+//        try {
+//            sizeCount = Integer.parseInt(size);
+//        } catch (NumberFormatException ignored) {
+//        }
         model.addAttribute("post", postService.findById(postId));
+        model.addAttribute("comments", commentService.findAllByPostId(postId));
         return "home/post";
     }
 
     @RequestMapping("/dashboard")
-    public String dashboard(Model model, @RequestParam(required = false) String page, @RequestParam(required = false) String size) {
+    public String dashboard(Model model) {
         model.addAttribute("tags", tagService.findAll());
         model.addAttribute("users", userService.findAll());
         model.addAttribute("categories", categoryService.findAll());

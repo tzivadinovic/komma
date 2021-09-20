@@ -118,6 +118,28 @@ input[type="password"].invalid {
     transition: .2s;
 }
 
+.category-action-btn {
+    font-size: 30px;
+    color: #0056b3;
+}
+
+.category-action-btn:hover {
+    color: white;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.tags-action-btn {
+    font-size: 30px;
+    color: #0056b3;
+}
+
+.tags-action-btn:hover {
+    color: white;
+    transition: .2s;
+    cursor: pointer;
+}
+
 .post-title {
     color: #5E81AC;
 }
@@ -323,7 +345,7 @@ table.highlight > tbody > tr:hover {
     background-color: #5E81AC;
 }
 
-.tags-table{
+.tags-table {
     display: flex;
     height: 100%;
     width: 100%;
@@ -458,4 +480,30 @@ ul.dropdown-content.select-dropdown li span {
     border-top: 0.14em solid #5E81AC;
 }
 
+.logo-text{
+    color: #3B4252;
+    font-weight: 750;
+}
 
+title{
+    text-transform: lowercase;
+}
+
+.comment-date{
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.comments-fragment{
+    border-left: 2px solid #5E81AC;
+    padding-left: 1em;
+    border-radius: 2px;
+}
+
+.comment-author{
+    font-size: 15px;
+}
+
+.comment-content{
+    font-size: 15px;
+}

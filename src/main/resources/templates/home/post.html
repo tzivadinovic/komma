@@ -19,6 +19,7 @@
         <a href="" th:text="${post.user.displayName}"></a>
         <h1 th:text="${post.title}" class="post-post-title"></h1>
         <div id="content" th:text="${post.content}" class="post-content markdown"></div>
+        <hr class="post-hr mt-5">
         <h3 class="comments mt-5">Comments</h3>
         <div class="row">
             <form class="col" method="post" th:action="@{/save-comment/posts/{id}(id=${post.id})}">
@@ -32,8 +33,9 @@
                     <i class="material-icons right">done</i>
                 </button>
             </form>
-            <!--/*@thymesVar id="comment" type="com.tzivadinovic.komma.entity.Comment"*/-->
-            <h4 th:each="comment : ${comments}" th:text="${comment.content}"></h4>
+        </div>
+        <div th:each="comment : ${comments}"
+             th:include="../fragments/comment-fragment.html :: commentListItem(comment)" class="comments-fragment mb-5">
         </div>
     </div>
 </main>

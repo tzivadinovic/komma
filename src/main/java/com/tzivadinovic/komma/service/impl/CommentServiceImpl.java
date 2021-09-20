@@ -4,6 +4,8 @@ import com.tzivadinovic.komma.entity.Comment;
 import com.tzivadinovic.komma.repository.CommentRepository;
 import com.tzivadinovic.komma.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +45,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findAllByPostId(Integer postId) {
         return commentRepository.findAllByPost_IdOrderByCreatedDateDesc(postId);
+    }
+
+    @Override
+    public Page<Comment> findAllByPostId(Integer postId, Pageable pageable) {
+        return commentRepository.findAllByPost_IdOrderByCreatedDateDesc(postId, pageable);
     }
 
 

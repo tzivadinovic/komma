@@ -67,6 +67,8 @@ public class PostServiceImpl implements PostService {
         post.setExcerpt(dto.getExcerpt());
         post.setTitle(dto.getTitle());
         post.setUser(user);
+//        String slugWithoutSpaces = dto.getTitle().replaceAll("[\\s+]", "-");
+//        post.setUrlSlug(slugWithoutSpaces.toLowerCase().replaceAll("[^a-zA-Z0-9]", ""));
         return postRepository.save(post);
     }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Komma | Blog</title>
+    <title>komma | blog</title>
     <div th:include="../fragments/head-fragment.html"></div>
 </head>
 <body>
@@ -31,7 +31,7 @@
                 <thead>
                 <tr>
                     <th>Category</th>
-                    <th>Actions</th>
+                    <th>Manage</th>
                 </tr>
                 </thead>
 
@@ -41,10 +41,7 @@
                     <td th:text="${category.name}"></td>
                     <td>
                         <a href="" th:href="@{/update-category/{id}(id=${category.id})}" class="modal-trigger">
-                            <i class="material-icons action-btn">create</i>
-                        </a>
-                        <a href="" class="modal-trigger">
-                            <i class="material-icons action-btn">delete</i>
+                            <i class="material-icons category-action-btn">create</i>
                         </a>
                     </td>
                 </tr>
@@ -77,7 +74,8 @@
                         <span data-feather="more-horizontal" width="20" height="20"></span>
                     </a>
                 </li>
-                <li class="page-item" th:classappend="${dashCategories.number + 1 == dashCategories.totalPages} ? 'disabled'">
+                <li class="page-item"
+                    th:classappend="${dashCategories.number + 1 == dashCategories.totalPages} ? 'disabled'">
                     <a class="page-link svg-icon"
                        th:href="@{/dashboard/categories?page={id}(id=${dashCategories.number + 1})}"
                        aria-label="Next"

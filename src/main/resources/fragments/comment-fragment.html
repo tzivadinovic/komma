@@ -1,0 +1,6 @@
+<div th:fragment="commentListItem(comment)">
+    <!--/*@thymesVar id="comment" type="com.tzivadinovic.komma.entity.Comment"*/-->
+    <a href=""><h5 th:text="${comment.getUser().getDisplayName()}" class="comment-author"></h5></a>
+    <small th:text="${#temporals.format(comment.createdDate, 'dd.MM.yyyy.')}" class="comment-date"></small>
+    <h5 th:text="${comment.content}" class="comment-content"></h5>
+</div>

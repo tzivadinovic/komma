@@ -15,12 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
-//    @GetMapping("/dashboard/posts")
-//    public String getPostsOnDashboard(Model model) {
-//        model.addAttribute("posts", postService.findAll());
-//        return "dashboard/posts";
-//    }
-
     @RequestMapping("/new-post")
     public String newPost() {
         return "home/new-post";

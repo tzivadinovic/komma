@@ -3,9 +3,9 @@
     <!--/*@thymesVar id="tag" type="com.tzivadinovic.komma.entity.Tag"*/-->
     <a th:href="@{|/categories/${post?.category?.name}|}"><small th:text="${post?.category?.name}"
                                                                  class="category-link right"></small></a>
-<!--    <h5 th:text="${#temporals.format(post.createdDate, 'dd.MM.yyyy.')}"></h5>-->
-<!--    By-->
-<!--    <a href="" th:text="${post.user.displayName}"></a>-->
+    <!--    <h5 th:text="${#temporals.format(post.createdDate, 'dd.MM.yyyy.')}"></h5>-->
+    <!--    By-->
+    <!--    <a href="" th:text="${post.user.displayName}"></a>-->
     <a th:href="@{|/post/${post.id}|}"><h4 th:text="${post.title}" class="post-title"></h4></a>
     <p th:text="${post.excerpt}"></p>
     <a th:each="tag : ${post?.tags}" th:href="@{|/tags/${tag.name}|}"><small class="chip mt-3 mb-5 tag"
