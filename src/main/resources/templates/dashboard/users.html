@@ -50,7 +50,8 @@
                     <td th:text="${user.displayName}"></td>
                     <td th:text="${user.roles}"></td>
                     <td>
-                        <a href="#user-edit" class="modal-trigger"><i class="material-icons action-btn">create</i></a>
+                        <a th:href="@{/users/{id}(id=${user.id})}"><i
+                                class="material-icons action-btn">create</i></a>
                     </td>
                 </tr>
                 </tbody>
@@ -91,29 +92,9 @@
                 </li>
             </ul>
         </div>
-        <div id="user-edit" class="modal">
-            <div class="modal-content">
-
-            </div>
-        </div>
-
-        <div id="user-delete" class="modal">
-            <div class="modal-content">
-
-            </div>
-        </div>
-
-
     </div>
 </main>
 <footer th:replace="../fragments/footer.html"></footer>
-<!--<script>-->
-<!--    const options = {};-->
-<!--    document.addEventListener("DOMContentLoaded", () => {-->
-<!--        var instance = M.Tabs.init(document.querySelector(".tabs"), options);-->
-<!--    });-->
-<!--</script>-->
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.modal');

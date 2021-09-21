@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>komma | blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <div class="container pt-5">
+        <div class="row">
+            <!--/*@thymesVar id="category" type="com.tzivadinovic.komma.entity.User"*/-->
+            <form class="col s12" method="post" th:action="@{/update-user}" th:object="${user}">
+                <div class="row">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="input-field col s6">
+                        <input id="firstName" type="text" class="validate"
+                               th:field="*{firstName}">
+                        <label for="firstName">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastName" type="text" class="validate"
+                               th:field="*{lastName}">
+                        <label for="lastName">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="email" type="email" class="validate" th:field="*{email}">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="username" type="text" class="validate"
+                               th:field="*{username}">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="displayName" type="text" class="validate"
+                               th:field="*{displayName}">
+                        <label for="displayName">Display name</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">
+                    Update
+                    <i class="material-icons right">done</i>
+                </button>
+            </form>
+            <div class="col s6">
+                <form method="post" th:action="@{/user/delete}" th:object="${user}">
+                    <input type="hidden" th:field="*{id}"/>
+                    <button class="btn waves-effect waves-light mb-1 mt-2" type="submit" name="action">
+                        Delete user
+                        <i class="material-icons right">delete</i>
+                    </button>
+                    <br>
+                    <small>Note: all content related to this user will be deleted</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="../fragments/footer.html"></footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, {});
+    });
+</script>
+</body>
+</html>

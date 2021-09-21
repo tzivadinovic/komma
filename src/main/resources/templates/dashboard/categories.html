@@ -40,7 +40,7 @@
                     <!--/*@thymesVar id="category" type="com.tzivadinovic.komma.entity.Category"*/-->
                     <td th:text="${category.name}"></td>
                     <td>
-                        <a th:href="@{/category/{id}(id=${category.id})}" class="modal-trigger">
+                        <a th:href="@{/category/{id}(id=${category.id})}">
                             <i class="material-icons category-action-btn">create</i>
                         </a>
                     </td>

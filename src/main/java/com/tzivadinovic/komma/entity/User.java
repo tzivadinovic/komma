@@ -71,4 +71,5 @@ public class User extends Auditable implements UserDetails {
     public boolean isEnabled() {
         return getRecordStatus() == 1;
     }
+
 }

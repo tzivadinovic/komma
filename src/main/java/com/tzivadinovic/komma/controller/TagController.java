@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -46,9 +43,22 @@ public class TagController {
         return "redirect:/dashboard";
     }
 
-    @PostMapping("/tags/{id}/delete")
-    public String deleteTag(@PathVariable("id") Integer id, Model model) {
-        tagService.deleteById(id);
+    @PostMapping("/update-tag")
+    public String updateTag(@ModelAttribute("tag") Tag tag) {
+        tagService.save(tag);
+        return "redirect:/dashboard/tags";
+    }
+
+    @GetMapping("/tag/{id}")
+    public String getUpdatingTag(Model model,
+                                 @PathVariable Integer id) {
+        model.addAttribute("tag", tagService.findById(id));
+        return "dashboard/update-delete-tag";
+    }
+
+    @PostMapping("/tag/delete")
+    public String deleteTag(@ModelAttribute("tag") Tag tag) {
+        tagService.deleteById(tag.getId());
         return "redirect:/dashboard/tags";
     }
 

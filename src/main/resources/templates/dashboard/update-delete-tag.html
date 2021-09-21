@@ -10,12 +10,12 @@
     <nav th:replace="../fragments/nav.html"></nav>
     <div class="container pt-5">
         <div class="row">
-            <form class="col s12" method="post" th:object="${category}"
-                  th:action="@{/update-category}">
+            <form class="col s12" method="post" th:object="${tag}"
+                  th:action="@{/update-tag}">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="input-field col s6">
                     <input id="name" type="text" class="validate" th:field="*{name}">
-                    <label for="name">Category name</label>
+                    <label for="name">Tag name</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" name="action">
                     Update
@@ -23,14 +23,14 @@
                 </button>
             </form>
             <div class="col s6">
-                <form method="post" th:action="@{/category/delete}" th:object="${category}">
+                <form method="post" th:action="@{/tag/delete}" th:object="${tag}">
                     <input type="hidden" th:field="*{id}"/>
                     <button class="btn waves-effect waves-light mb-1 mt-2" type="submit" name="action">
-                        Delete category
+                        Delete tag
                         <i class="material-icons right">delete</i>
                     </button>
                     <br>
-                    <small>Note: make sure this category is not used in any post</small>
+                    <small>Note: make sure this tag is not used in any post</small>
                 </form>
             </div>
         </div>
