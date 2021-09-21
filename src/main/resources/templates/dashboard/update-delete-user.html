@@ -10,7 +10,6 @@
     <nav th:replace="../fragments/nav.html"></nav>
     <div class="container pt-5">
         <div class="row">
-            <!--/*@thymesVar id="category" type="com.tzivadinovic.komma.entity.User"*/-->
             <form class="col s12" method="post" th:action="@{/update-user}" th:object="${user}">
                 <div class="row">
                     <input type="hidden" th:field="*{id}"/>
@@ -40,6 +39,13 @@
                                th:field="*{displayName}">
                         <label for="displayName">Display name</label>
                     </div>
+                    <div class="input-field col s6">
+                        <select id="role" th:field="*{roles}" multiple>
+                            <option hidden value="" selected>Choose your option</option>
+                            <option th:each="role : ${user.roles}"
+                                    th:text="${role.role}" th:value="${role.id}"></option>
+                        </select>
+                    </div>
                 </div>
                 <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">
                     Update
@@ -65,6 +71,12 @@
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.modal');
         var instances = M.Modal.init(elems, {});
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
     });
 </script>
 </body>
