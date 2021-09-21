@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -48,17 +46,16 @@ public class CategoryController {
         return "redirect:/dashboard";
     }
 
-    @PostMapping("/update-category/{id}")
-    public String updateCategory(Model model, @PathVariable Integer id, @Validated @ModelAttribute("category") Category category, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) return "error";
-        category.setId(id);
-        model.addAttribute("category", categoryService.update(category));
+    @PostMapping("/update-category")
+    public String updateCategory(@ModelAttribute("category") Category category) {
+        categoryService.save(category);
         return "redirect:/dashboard";
     }
 
-    @GetMapping("/update-category/{id}")
-    public String getUpdatingCategory(Model model, @PathVariable Integer id) {
+    @GetMapping("/category/{id}")
+    public String getUpdatingCategory(Model model,
+                                      @PathVariable Integer id) {
         model.addAttribute("category", categoryService.findById(id));
-        return "home/dashboard";
+        return "dashboard/update-delete-category";
     }
 }

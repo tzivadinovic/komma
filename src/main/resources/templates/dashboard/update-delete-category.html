@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>komma | blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <div class="container pt-5">
+        <div class="row">
+            <form class="col s12" method="post" th:object="${category}"
+                  th:action="@{/update-category}">
+                <div class="row">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="input-field col s6">
+                        <input id="name" type="text" class="validate" th:field="*{name}">
+                        <label for="name">Category name</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">
+                    Submit
+                    <i class="material-icons right">done</i>
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="../fragments/footer.html"></footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, {});
+    });
+</script>
+</body>
+</html>
