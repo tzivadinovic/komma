@@ -4,6 +4,7 @@ import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
 import com.tzivadinovic.komma.entity.dto.RegisterDTO;
 import com.tzivadinovic.komma.repository.UserRepository;
+import com.tzivadinovic.komma.service.RoleService;
 import com.tzivadinovic.komma.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
+    private final RoleService roleService;
 
     @GetMapping("/dashboard/users")
     public String getUsersOnDashboard(Model model,
@@ -75,6 +77,18 @@ public class UserController {
     @PostMapping("/user/delete")
     public String deleteUser(@ModelAttribute("user") User user) {
         userService.deleteById(user.getId());
+        return "redirect:/dashboard/users";
+    }
+
+    @RequestMapping("/create-user-page")
+    public String userPage(Model model) {
+        model.addAttribute("roles", roleService.findAll());
+        return "dashboard/create-user";
+    }
+
+    @PostMapping("/create-user-as-admin")
+    public String createUserAsAdmin(@ModelAttribute("user") User user) {
+        userService.save(user);
         return "redirect:/dashboard/users";
     }
 }

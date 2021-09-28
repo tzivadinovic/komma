@@ -57,7 +57,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn-floating btn-large waves-effect waves-light right new-post mt-3"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light right new-post mt-3" th:href="@{/create-user-page}"><i class="material-icons">add</i></a>
         <div aria-label="Pagination" th:if="${dashUsers.totalPages > 0}">
             <ul class="pagination justify-content-center font-weight-medium mt-5 mb-5">
                 <li class="page-item" th:classappend="${dashUsers.number == 0} ? 'disabled'">

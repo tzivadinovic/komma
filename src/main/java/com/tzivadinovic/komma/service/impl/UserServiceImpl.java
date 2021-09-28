@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         } else {
             user.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
-        user.setDisplayName(String.format("%s %s", dto.getFirstName(), dto.getLastName()));
+        user.setDisplayName(createDefaultDisplayName(dto.getFirstName(), dto.getLastName()));
         user.setRoles(roleRepository.findAllByRole("AUTHOR")); //default
         return userRepository.save(user);
 
@@ -65,11 +65,26 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User save(User user) {
+        user.setPassword(passwordEncoder.encode(createDefaultPassword(user.getFirstName(), user.getLastName())));
+        user.setDisplayName(createDefaultDisplayName(user.getFirstName(), user.getLastName()));
+        return userRepository.save(user);
+    }
+
+    @Override
     public User update(User user) {
         User existingUser = userRepository.findByUsername(user.getUsername()).orElseThrow(NoSuchElementException::new);
-        user.setDisplayName(String.format("%s %s", existingUser.getFirstName(), existingUser.getLastName()));
+        user.setDisplayName(createDefaultDisplayName(existingUser.getFirstName(), existingUser.getLastName()));
         user.setPassword(existingUser.getPassword());
         return userRepository.save(user);
+    }
+
+    public String createDefaultPassword(String firstName, String lastName) {
+        return String.format("%s.%s", firstName.toLowerCase(), lastName.toLowerCase());
+    }
+
+    public String createDefaultDisplayName(String firstName, String lastName) {
+        return String.format("%s %s", firstName, lastName);
     }
 
     @Override

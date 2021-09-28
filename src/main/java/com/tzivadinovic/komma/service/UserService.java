@@ -16,6 +16,8 @@ public interface UserService {
 
     User save(RegisterDTO dto);
 
+    User save(User user);
+
     User update(User user);
 
     User findById(Integer userId);

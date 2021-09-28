@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>komma | blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+</head>
+<body>
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <div class="container pt-5">
+        <h2 class="center">Create user</h2>
+        <div class="row mt-5">
+            <form class="col s12" method="post" th:action="@{/create-user-as-admin}">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="firstName" type="text" class="validate" name="firstName">
+                        <label for="firstName">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastName" type="text" class="validate" name="lastName">
+                        <label for="lastName">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="username" type="text" class="validate" name="username">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="email" type="email" class="validate" name="email">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="about" class="materialize-textarea about-user" name="about"></textarea>
+                        <label for="about">About</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select name="roles">
+                            <option selected>Roles</option>
+                            <!--/*@thymesVar id="role" type="com.tzivadinovic.komma.entity.Role"*/-->
+                            <option th:each="role : ${roles}" th:text="${role.role}" th:value="${role.id}"></option>
+                        </select>
+                        <label>Roles</label>
+                    </div>
+                    <button class="btn waves-effect waves-light right mt-4" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="../fragments/footer.html"></footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, {});
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('select');
+        const instances = M.FormSelect.init(elems, {});
+    });
+</script>
+</body>
+</html>
