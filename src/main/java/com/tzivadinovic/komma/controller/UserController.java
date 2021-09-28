@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -40,8 +42,8 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-    public String createUser(@ModelAttribute RegisterDTO dto, BindingResult result) {
-        if (result.hasErrors()) return "";
+    public String createUser(@ModelAttribute("dto") @Valid RegisterDTO dto, BindingResult result) {
+        if (result.hasErrors()) return "register/register";
         userService.save(dto);
         return "redirect:/";
     }

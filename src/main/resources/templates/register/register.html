@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>komma | register</title>
+    <div th:include="../fragments/head-fragment.html"></div>
     <link href="register.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,26 +15,31 @@
     <div class="row">
         <h1 class="logo">komma|blog</h1>
         <!--/*@thymesVar id="user" type="com.tzivadinovic.komma.entity.User"*/-->
-        <form class="col s12" method="post" th:action="@{/create-user}" th:object="${user}">
+        <form class="col s12" method="post" th:action="@{/create-user}" th:object="${dto}">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="firstname" type="text" class="validate" name="firstName">
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="alert red white-text"></span>
                     <label for="firstname">Firstname</label>
                 </div>
                 <div class="input-field col s12">
                     <input id="lastname" type="text" class="validate" name="lastName">
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert red white-text"></span>
                     <label for="lastname">Lastname</label>
                 </div>
                 <div class="input-field col s12">
                     <input id="email" type="email" class="validate" name="email">
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert red white-text"></span>
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field col s12">
                     <input id="username" type="text" class="validate" name="username">
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert red white-text"></span>
                     <label for="username">Username</label>
                 </div>
                 <div class="input-field col s12">
                     <input id="password" type="password" class="validate" name="password">
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert red white-text"></span>
                     <label for="password">Password</label>
                 </div>
                 <div class="input-field col s12">
