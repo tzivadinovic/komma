@@ -1,6 +1,7 @@
 package com.tzivadinovic.komma.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tzivadinovic.komma.domain.RecordStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
+
+import static com.tzivadinovic.komma.domain.RecordStatus.*;
 
 @Data
 @Entity
@@ -53,25 +56,26 @@ public class User extends Auditable implements UserDetails {
     @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
-        return isEnabled();
+        return getRecordStatus() != EXPIRED;
     }
 
     @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
-        return isEnabled();
+        return getRecordStatus() != LOCKED;
     }
 
     @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
-        return isEnabled();
+        return getRecordStatus() != EXPIRED;
     }
 
     @JsonIgnore
     @Override
     public boolean isEnabled() {
-        return getRecordStatus() == 1;
+        return getRecordStatus() != DISABLED && getRecordStatus() != DELETED;
+
     }
 
 }

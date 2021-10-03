@@ -26,6 +26,13 @@
                         <label for="password">Password</label>
                     </div>
                 </div>
+                <div th:switch="${#httpServletRequest.getParameter('error')}">
+                    <span th:case="'badCredentials'" class="alert red white-text" th:text="#{auth.badCredentials}"></span>
+                    <span th:case="'locked'" class="alert red white-text" th:text="#{auth.locked}"></span>
+                    <span th:case="'disabled'" class="alert red white-text" th:text="#{auth.disabled}"></span>
+                    <span th:case="'expired'" class="alert red white-text" th:text="#{auth.expired}"></span>
+                    <span th:case="'notFound'" class="alert red white-text" th:text="#{auth.notFound}"></span>
+                </div>
                 <small class="no-acc">No account? <a href="" th:href="@{/register}">Register</a></small>
                 <button class="btn waves-effect waves-light right" type="submit" name="action">Login
                     <i class="material-icons right">send</i>

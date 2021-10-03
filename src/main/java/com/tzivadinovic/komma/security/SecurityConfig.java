@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/")
                 .defaultSuccessUrl("/home")
                 .loginProcessingUrl("/perform_login")
-                .failureUrl("/")
+                .failureHandler(new CustomAuthenticationFailureHandler())
                 .and()
                 .logout()
                 .logoutSuccessUrl("/home")
