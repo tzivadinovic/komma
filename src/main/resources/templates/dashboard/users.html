@@ -34,8 +34,8 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Username</th>
-                    <th>Display name</th>
                     <th>Roles</th>
+                    <th>Status</th>
                     <th>Manage</th>
                 </tr>
                 </thead>
@@ -47,8 +47,8 @@
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.username}"></td>
-                    <td th:text="${user.displayName}"></td>
                     <td th:text="${user.roles}"></td>
+                    <td th:text="${user.recordStatus}"></td>
                     <td>
                         <a th:href="@{/users/{id}(id=${user.id})}"><i
                                 class="material-icons action-btn">create</i></a>
