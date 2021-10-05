@@ -41,10 +41,19 @@
                     </div>
                     <div class="input-field col s6">
                         <select id="role" th:field="*{roles}" multiple>
-                            <option hidden value="" selected>Choose your option</option>
-                            <option th:each="role : ${user.roles}"
+                            <option hidden value="" selected>Roles</option>
+                            <option th:each="role : ${roles}"
                                     th:text="${role.role}" th:value="${role.id}"></option>
                         </select>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="recordStatus" th:field="*{recordStatus}" th:value="${user.recordStatus}">
+                            <option th:each="status : ${T(com.tzivadinovic.komma.domain.RecordStatus).values()}"
+                                    th:value="${status}"
+                                    th:text="${status}">
+                            </option>
+                        </select>
+                        <label for="recordStatus">User status</label>
                     </div>
                 </div>
                 <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">
@@ -74,7 +83,7 @@
     });
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems, {});
     });

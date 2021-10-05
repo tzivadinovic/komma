@@ -1,5 +1,6 @@
 package com.tzivadinovic.komma.controller;
 
+import com.tzivadinovic.komma.domain.RecordStatus;
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
 import com.tzivadinovic.komma.entity.dto.RegisterDTO;
@@ -73,6 +74,7 @@ public class UserController {
     public String getUpdatingUser(Model model,
                                   @PathVariable Integer id) {
         model.addAttribute("user", userService.findById(id));
+        model.addAttribute("roles", roleService.findAll());
         return "dashboard/update-delete-user";
     }
 
