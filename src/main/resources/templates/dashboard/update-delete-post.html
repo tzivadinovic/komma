@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>komma | blog</title>
+    <div th:include="../fragments/head-fragment.html"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <link href="../../static/index.css" rel="stylesheet">
+</head>
+<body>
+<main>
+    <nav th:replace="../fragments/nav.html"></nav>
+    <a href="/dashboard/posts">
+        <button class="btn waves-effect waves-light ml-5 mt-5" type="submit" name="action"><i
+                class="material-icons">arrow_back</i>
+        </button>
+    </a>
+    <div class="container pt-5 mt-5">
+        <div class="row">
+            <!--/*@thymesVar id="post" type="com.tzivadinovic.komma.entity.dto.PostDTO"*/-->
+            <form class="col s12" method="post" th:action="@{/update-post}" th:object="${post}">
+                <div class="row">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{user}"/>
+                    <div class="input-field col s6">
+                        <input placeholder="Write the title of your post (max=96 characters)" id="title" type="text"
+                               class="validate"
+                               name="title" th:field="*{title}">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <!--/*@thymesVar id="category" type="com.tzivadinovic.komma.entity.Category"*/-->
+<!--                        <select th:object="${category}" name="category">-->
+<!--                            <option value="" selected>Category</option>-->
+<!--                            <option th:each="category : ${categories}"-->
+<!--                                    th:text="${category.name}" th:value="${category.id}"></option>-->
+<!--                        </select>-->
+                        <select th:field="*{category}">
+                            <option hidden value="" selected>Category</option>
+                            <option th:each="category : ${categories}"
+                                    th:text="${category.name}" th:value="${category.id}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <textarea name="excerpt" id="excerpt" cols="30" rows="10" placeholder="Excerpt"
+                              class="materialize-textarea excerpt" th:field="*{excerpt}"></textarea>
+                    </div>
+                </div>
+
+                <textarea name="content" id="content" cols="30" rows="10" th:field="*{content}"></textarea>
+
+                <div class="input-field col s12">
+                    <select th:field="*{tags}" multiple>
+                        <option hidden value="" selected>Tags</option>
+                        <option th:each="tag : ${possibleTags}"
+                                th:text="${tag.name}" th:value="${tag.id}"></option>
+                    </select>
+                    <label>Tags</label>
+                </div>
+
+                <button class="btn waves-effect waves-light right mt-3 mb-5" type="submit" name="action">Update
+                    <i class="material-icons right">done</i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("content"),
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('select');
+            const instances = M.FormSelect.init(elems, {});
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tagsInput = document.getElementById("tags2");
+            tagsInput.addEventListener("change", console.log(tagsInput.nodeValue));
+            const tags = document.querySelectorAll(".chips");
+            fetch("/api/tags").then(res => res.json())
+                .then(res => {
+                    const data = {};
+                    res.forEach(tag => Object.assign(data, {[tag.name]: null}));
+                    M.Chips.init(tags, {
+                        // onChipAdd: function (el, chip) {
+                        //     // tagsInput.nodeValue = this.chipData.map(tag => tag.name).join(',')
+                        // },
+                        // onChipDelete: function (el, chip) {
+                        //     tagsInput.nodeValue = this.chipData.map(tag => tag.name).join(',')
+                        // },
+                        autocompleteOptions: {
+                            data,
+                            limit: Infinity,
+                            minLength: 1
+                        }
+                    });
+                });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.autocomplete');
+            var instances = M.Autocomplete.init(elems, {});
+        });
+    </script>
+</body>
+</html>

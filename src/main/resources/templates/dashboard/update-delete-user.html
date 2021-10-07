@@ -8,6 +8,11 @@
 <body>
 <main>
     <nav th:replace="../fragments/nav.html"></nav>
+    <a href="/dashboard/users">
+        <button class="btn waves-effect waves-light ml-5 mt-5" type="submit" name="action"><i
+                class="material-icons">arrow_back</i>
+        </button>
+    </a>
     <div class="container pt-5">
         <div class="row">
             <form class="col s12" method="post" th:action="@{/update-user}" th:object="${user}">

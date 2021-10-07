@@ -8,10 +8,16 @@
 <body>
 <nav th:replace="../fragments/nav.html"></nav>
 <div class="container pt-5 mb-5">
+    <a href="/home">
+        <button class="btn waves-effect waves-light" type="submit" name="action"><i
+                class="material-icons">arrow_back</i>
+        </button>
+    </a>
     <div class="no-posts">
-        <h3 th:if="${userPosts.getSize() == 0}" class="no-posts-message mb-5">You have no posts <br></h3>
-        <a sec:authorize="isAuthenticated()" class="btn-floating btn-large waves-effect waves-light new-post"
-           th:href="@{/new-post}"><i class="material-icons">add</i></a>
+        <div class="center my-posts-new">
+            <a sec:authorize="isAuthenticated()" class="waves-effect waves-light btn-large new-post"
+               th:href="@{/new-post}"><i class="material-icons right">add</i>New post</a>
+        </div>
     </div>
     <div class="posts mt-5">
         <div th:each="post : ${userPosts}"

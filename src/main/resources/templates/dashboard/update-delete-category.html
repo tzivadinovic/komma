@@ -8,13 +8,18 @@
 <body>
 <main>
     <nav th:replace="../fragments/nav.html"></nav>
+    <a href="/dashboard/categories">
+        <button class="btn waves-effect waves-light ml-5 mt-5" type="submit" name="action"><i
+                class="material-icons">arrow_back</i>
+        </button>
+    </a>
     <div class="container pt-5">
         <div class="row">
-<!--            <a href="/dashboard/categories">-->
-<!--                <button class="btn waves-effect waves-light" type="submit" name="action"><i-->
-<!--                        class="material-icons">arrow_back</i>-->
-<!--                </button>-->
-<!--            </a>-->
+            <a href="/home">
+                <button class="btn waves-effect waves-light" type="submit" name="action"><i
+                        class="material-icons">arrow_back</i>
+                </button>
+            </a>
             <form class="col s12" method="post" th:object="${category}"
                   th:action="@{/update-category}">
                 <input type="hidden" th:field="*{id}"/>

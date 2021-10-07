@@ -1,8 +1,11 @@
 package com.tzivadinovic.komma.controller;
 
+import com.tzivadinovic.komma.entity.Post;
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.PostDTO;
+import com.tzivadinovic.komma.service.CategoryService;
 import com.tzivadinovic.komma.service.PostService;
+import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
+    private final CategoryService categoryService;
+    private final TagService tagService;
 
     @RequestMapping("/new-post")
     public String newPost() {
@@ -65,5 +70,20 @@ public class PostController {
         }
         model.addAttribute("userPosts", postService.findAllByUsername(user.getUsername(), PageRequest.of(pageNumber, sizeCount)));
         return "home/my-posts";
+    }
+
+    @PostMapping("/update-post")
+    public String updatePost(@ModelAttribute("post") Post post, Model model) {
+        model.addAttribute("", postService.update(post));
+        return "redirect:/dashboard/posts";
+    }
+
+    @GetMapping("/posts/{id}")
+    public String getUpdatingPost(Model model,
+                                  @PathVariable Integer id) {
+        model.addAttribute("post", postService.findById(id));
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("possibleTags", tagService.findAll());
+        return "dashboard/update-delete-post";
     }
 }
