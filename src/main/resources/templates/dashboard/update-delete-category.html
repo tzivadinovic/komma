@@ -15,11 +15,6 @@
     </a>
     <div class="container pt-5">
         <div class="row">
-            <a href="/home">
-                <button class="btn waves-effect waves-light" type="submit" name="action"><i
-                        class="material-icons">arrow_back</i>
-                </button>
-            </a>
             <form class="col s12" method="post" th:object="${category}"
                   th:action="@{/update-category}">
                 <input type="hidden" th:field="*{id}"/>
