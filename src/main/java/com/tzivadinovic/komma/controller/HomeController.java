@@ -40,19 +40,7 @@ public class HomeController {
 
     @GetMapping("/post/{postId}")
     public String post(Model model,
-                       @PathVariable Integer postId,
-                       @RequestParam(required = false) String page,
-                       @RequestParam(required = false) String size) {
-//        int pageNumber = 0;
-//        try {
-//            pageNumber = Integer.parseInt(page);
-//        } catch (NumberFormatException ignored) {
-//        }
-//        int sizeCount = 4;
-//        try {
-//            sizeCount = Integer.parseInt(size);
-//        } catch (NumberFormatException ignored) {
-//        }
+                       @PathVariable Integer postId) {
         model.addAttribute("post", postService.findById(postId));
         model.addAttribute("comments", commentService.findAllByPostId(postId));
         return "home/post";

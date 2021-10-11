@@ -32,6 +32,5 @@ public interface PostService {
 
     List<Post> findAllByTags(String tagName);
 
-    Post updatePostStatus(Integer postId);
-
+    void updatePostStatus(Integer postId);
 }

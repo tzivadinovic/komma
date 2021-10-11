@@ -31,16 +31,10 @@ public class TagController {
         return "dashboard/tags";
     }
 
-//    @GetMapping("/home/new-post")
-//    public String getAllTags(Model model) {
-//        model.addAttribute("tags", tagService.findAll());
-//        return "home/new-post";
-//    }
-
     @PostMapping("/save-tag")
     public String saveTag(Model model, Tag tag) {
         model.addAttribute("tag", tagService.save(tag));
-        return "redirect:/dashboard";
+        return "redirect:/dashboard/tags";
     }
 
     @PostMapping("/update-tag")
@@ -56,9 +50,9 @@ public class TagController {
         return "dashboard/update-delete-tag";
     }
 
-    @PostMapping("/tag/delete")
-    public String deleteTag(@ModelAttribute("tag") Tag tag) {
-        tagService.deleteById(tag.getId());
+    @RequestMapping("/tag/delete/{id}")
+    public String deleteTag(@PathVariable Integer id) {
+        tagService.deleteById(id);
         return "redirect:/dashboard/tags";
     }
 

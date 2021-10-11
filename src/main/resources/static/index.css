@@ -530,6 +530,24 @@ title {
     margin-bottom: .5rem;
 }
 
-.my-posts-new{
+.my-posts-new {
     font-size: 8px;
+}
+
+.category-delete-btn {
+    font-size: 30px;
+    color: #BF616A;
+}
+
+.category-delete-btn:hover {
+    color: #87444b;
+}
+
+.tags-delete-btn {
+    font-size: 30px;
+    color: #BF616A;
+}
+
+.tags-delete-btn:hover {
+    color: #87444b;
 }

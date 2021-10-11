@@ -27,7 +27,8 @@
                     </div>
                 </div>
                 <div th:switch="${#httpServletRequest.getParameter('error')}">
-                    <span th:case="'badCredentials'" class="alert red white-text" th:text="#{auth.badCredentials}"></span>
+                    <span th:case="'badCredentials'" class="alert red white-text"
+                          th:text="#{auth.badCredentials}"></span>
                     <span th:case="'locked'" class="alert red white-text" th:text="#{auth.locked}"></span>
                     <span th:case="'disabled'" class="alert red white-text" th:text="#{auth.disabled}"></span>
                     <span th:case="'expired'" class="alert red white-text" th:text="#{auth.expired}"></span>

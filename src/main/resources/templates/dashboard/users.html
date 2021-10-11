@@ -47,7 +47,10 @@
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.username}"></td>
-                    <td th:text="${user.roles}"></td>
+                    <td>
+                        <!--/*@thymesVar id="role" type="com.tzivadinovic.komma.entity.Role"*/-->
+                        <span th:each="role : ${user.roles}" th:text="${role.role}" class="chip"></span>
+                    </td>
                     <td th:text="${user.recordStatus}"></td>
                     <td>
                         <a th:href="@{/users/{id}(id=${user.id})}"><i
@@ -57,7 +60,8 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn-floating btn-large waves-effect waves-light right new-post mt-3" th:href="@{/create-user-page}"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light right new-post mt-3" th:href="@{/create-user-page}"><i
+                class="material-icons">add</i></a>
         <div aria-label="Pagination" th:if="${dashUsers.totalPages > 0}">
             <ul class="pagination justify-content-center font-weight-medium mt-5 mb-5">
                 <li class="page-item" th:classappend="${dashUsers.number == 0} ? 'disabled'">

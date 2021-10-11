@@ -44,13 +44,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post save(Post post) {
-//        Post post = new Post();
-//        post.setUser(user);
-//        post.setCategory(dto.getCategory());
-//        post.setTags(dto.getTags());
-//        post.setContent(dto.getContent());
-//        post.setExcerpt(dto.getExcerpt());
-//        post.setTitle(dto.getTitle());
         return postRepository.save(post);
     }
 
@@ -59,7 +52,7 @@ public class PostServiceImpl implements PostService {
         Post post = new Post();
         post.setCategory(dto.getCategory());
         post.setTags(Arrays.stream(dto.getTags()
-                .split(",\\s*"))
+                        .split(",\\s*"))
                 .map(tagRepository::findByName)
                 .flatMap(Optional::stream)
                 .collect(Collectors.toList()));
@@ -67,8 +60,6 @@ public class PostServiceImpl implements PostService {
         post.setExcerpt(dto.getExcerpt());
         post.setTitle(dto.getTitle());
         post.setUser(user);
-//        String slugWithoutSpaces = dto.getTitle().replaceAll("[\\s+]", "-");
-//        post.setUrlSlug(slugWithoutSpaces.toLowerCase().replaceAll("[^a-zA-Z0-9]", ""));
         return postRepository.save(post);
     }
 
@@ -100,10 +91,10 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post updatePostStatus(Integer postId) {
+    public void updatePostStatus(Integer postId) {
         Post post = findById(postId);
         post.setPublished(!post.getPublished());
-        return postRepository.save(post);
+        postRepository.save(post);
     }
 
 

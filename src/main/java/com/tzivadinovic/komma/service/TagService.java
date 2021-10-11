@@ -19,7 +19,4 @@ public interface TagService {
     Tag findById(Integer tagId);
 
     void deleteById(Integer tagId);
-
-    List<String> findTagsForPost(Integer postId);
-
 }

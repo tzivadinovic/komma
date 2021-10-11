@@ -57,11 +57,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setDisplayName(createDefaultDisplayName(dto.getFirstName(), dto.getLastName()));
         user.setRoles(roleRepository.findAllByRole("AUTHOR")); //default
         return userRepository.save(user);
-
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        user.setDisplayName(String.format("%s %s", user.getFirstName(), user.getLastName()));
-//        user.setRoles(roleRepository.findAllByRole("AUTHOR")); //default
-//        return userRepository.save(user);
     }
 
     @Override

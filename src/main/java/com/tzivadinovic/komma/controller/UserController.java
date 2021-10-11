@@ -1,6 +1,5 @@
 package com.tzivadinovic.komma.controller;
 
-import com.tzivadinovic.komma.domain.RecordStatus;
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
 import com.tzivadinovic.komma.entity.dto.RegisterDTO;

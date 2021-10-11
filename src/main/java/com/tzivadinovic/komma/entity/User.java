@@ -1,7 +1,6 @@
 package com.tzivadinovic.komma.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tzivadinovic.komma.domain.RecordStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -10,8 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 

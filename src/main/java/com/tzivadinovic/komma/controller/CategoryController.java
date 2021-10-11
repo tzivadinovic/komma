@@ -43,7 +43,7 @@ public class CategoryController {
     @PostMapping("/save-category")
     public String saveCategory(Model model, Category category) {
         model.addAttribute("category", categoryService.save(category));
-        return "redirect:/dashboard";
+        return "redirect:/dashboard/categories";
     }
 
     @PostMapping("/update-category")
@@ -59,9 +59,9 @@ public class CategoryController {
         return "dashboard/update-delete-category";
     }
 
-    @PostMapping("/category/delete")
-    public String deleteCategory(@ModelAttribute("category") Category category) {
-        categoryService.deleteById(category.getId());
+    @RequestMapping("/category/delete/{id}")
+    public String deleteCategory(@PathVariable Integer id) {
+        categoryService.deleteById(id);
         return "redirect:/dashboard/categories";
     }
 }

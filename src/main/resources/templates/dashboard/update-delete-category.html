@@ -13,33 +13,7 @@
                 class="material-icons">arrow_back</i>
         </button>
     </a>
-    <div class="container pt-5">
-        <div class="row">
-            <form class="col s12" method="post" th:object="${category}"
-                  th:action="@{/update-category}">
-                <input type="hidden" th:field="*{id}"/>
-                <div class="input-field col s6">
-                    <input id="name" type="text" class="validate" th:field="*{name}">
-                    <label for="name">Category name</label>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Update
-                    <i class="material-icons right">done</i>
-                </button>
-            </form>
-            <div class="col s6">
-                <form method="post" th:action="@{/category/delete}" th:object="${category}">
-                    <input type="hidden" th:field="*{id}"/>
-                    <button class="btn waves-effect waves-light mb-1 mt-2" type="submit" name="action">
-                        Delete category
-                        <i class="material-icons right">delete</i>
-                    </button>
-                    <br>
-                    <small>Note: make sure this category is not used in any post</small>
-                </form>
-            </div>
-        </div>
-    </div>
+
 </main>
 <footer th:replace="../fragments/footer.html"></footer>
 <script>

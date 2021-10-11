@@ -43,6 +43,9 @@
                         <a th:href="@{/category/{id}(id=${category.id})}">
                             <i class="material-icons category-action-btn">create</i>
                         </a>
+                        <a th:href="@{/category/delete/{id}(id=${category.id})}">
+                            <i class="material-icons category-delete-btn">delete</i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
