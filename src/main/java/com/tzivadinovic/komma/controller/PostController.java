@@ -3,11 +3,13 @@ package com.tzivadinovic.komma.controller;
 import com.tzivadinovic.komma.entity.Post;
 import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.PostDTO;
+import com.tzivadinovic.komma.security.annotation.RequireAdmin;
 import com.tzivadinovic.komma.service.CategoryService;
 import com.tzivadinovic.komma.service.PostService;
 import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,7 @@ public class PostController {
         return "redirect:/home";
     }
 
+    @RequireAdmin
     @PostMapping("/update-post-status/{postId}")
     public String updatePostStatus(@PathVariable Integer postId) {
         postService.updatePostStatus(postId);
@@ -72,12 +75,14 @@ public class PostController {
         return "home/my-posts";
     }
 
+    @RequireAdmin
     @PostMapping("/update-post")
     public String updatePost(@ModelAttribute("post") Post post, Model model) {
         model.addAttribute("", postService.update(post));
         return "redirect:/dashboard/posts";
     }
 
+    @RequireAdmin
     @GetMapping("/posts/{id}")
     public String getUpdatingPost(Model model,
                                   @PathVariable Integer id) {

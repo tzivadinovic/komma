@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static com.tzivadinovic.komma.domain.RecordStatus.*;
+import static javax.persistence.CascadeType.MERGE;
 
 @Data
 @Entity
@@ -40,7 +41,7 @@ public class User extends Auditable implements UserDetails {
     @Column(name = "about")
     private String about;
     @ToString.Exclude
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = MERGE)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_fk"), inverseJoinColumns = @JoinColumn(name = "role_fk"))
     private List<Role> roles;
 

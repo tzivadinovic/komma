@@ -15,7 +15,7 @@
     </a>
     <div class="container pt-5">
         <div class="row">
-            <form class="col s12" method="post" th:action="@{/update-user}" th:object="${user}">
+            <form class="col s12" method="post" th:action="@{/update-user-as-admin}" th:object="${user}">
                 <div class="row">
                     <input type="hidden" th:field="*{id}"/>
                     <div class="input-field col s6">

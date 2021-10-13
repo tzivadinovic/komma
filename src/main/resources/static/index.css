@@ -551,3 +551,7 @@ title {
 .tags-delete-btn:hover {
     color: #87444b;
 }
+
+.post-img img{
+    max-width: 100%;
+}

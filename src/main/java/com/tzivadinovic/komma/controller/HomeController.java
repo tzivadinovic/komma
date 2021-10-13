@@ -1,5 +1,7 @@
 package com.tzivadinovic.komma.controller;
 
+import com.tzivadinovic.komma.security.annotation.RequireAdmin;
+import com.tzivadinovic.komma.security.annotation.RequireFullAuthentication;
 import com.tzivadinovic.komma.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +22,7 @@ public class HomeController {
     private final RoleService roleService;
     private final CommentService commentService;
 
+    @RequireFullAuthentication
     @RequestMapping("/home")
     public String home(Model model,
                        @RequestParam(required = false) String page,
@@ -46,6 +49,7 @@ public class HomeController {
         return "home/post";
     }
 
+    @RequireAdmin
     @RequestMapping("/dashboard")
     public String dashboard(Model model) {
         model.addAttribute("tags", tagService.findAll());
@@ -55,6 +59,7 @@ public class HomeController {
         return "home/dashboard";
     }
 
+    @RequireAdmin
     @GetMapping("/dashboard/posts")
     public String dashboardPosts(Model model,
                                  @RequestParam(required = false) String page,

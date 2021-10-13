@@ -1,6 +1,7 @@
 package com.tzivadinovic.komma.controller;
 
 import com.tzivadinovic.komma.entity.Tag;
+import com.tzivadinovic.komma.security.annotation.RequireAdmin;
 import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class TagController {
     private final TagService tagService;
 
+    @RequireAdmin
     @GetMapping("/dashboard/tags")
     public String getTagsOnDashboard(Model model,
                                      @RequestParam(required = false) String page,
@@ -31,18 +33,21 @@ public class TagController {
         return "dashboard/tags";
     }
 
+    @RequireAdmin
     @PostMapping("/save-tag")
     public String saveTag(Model model, Tag tag) {
         model.addAttribute("tag", tagService.save(tag));
         return "redirect:/dashboard/tags";
     }
 
+    @RequireAdmin
     @PostMapping("/update-tag")
     public String updateTag(@ModelAttribute("tag") Tag tag) {
         tagService.save(tag);
         return "redirect:/dashboard/tags";
     }
 
+    @RequireAdmin
     @GetMapping("/tag/{id}")
     public String getUpdatingTag(Model model,
                                  @PathVariable Integer id) {
@@ -50,6 +55,7 @@ public class TagController {
         return "dashboard/update-delete-tag";
     }
 
+    @RequireAdmin
     @RequestMapping("/tag/delete/{id}")
     public String deleteTag(@PathVariable Integer id) {
         tagService.deleteById(id);

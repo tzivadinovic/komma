@@ -4,10 +4,12 @@ import com.tzivadinovic.komma.entity.User;
 import com.tzivadinovic.komma.entity.dto.ChangePasswordDTO;
 import com.tzivadinovic.komma.entity.dto.RegisterDTO;
 import com.tzivadinovic.komma.repository.UserRepository;
+import com.tzivadinovic.komma.security.annotation.RequireAdmin;
 import com.tzivadinovic.komma.service.RoleService;
 import com.tzivadinovic.komma.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ public class UserController {
     private final UserService userService;
     private final RoleService roleService;
 
+    @RequireAdmin
     @GetMapping("/dashboard/users")
     public String getUsersOnDashboard(Model model,
                                       @RequestParam(required = false) String page,
@@ -49,6 +52,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{username}")
+    @PreAuthorize("#username == authentication.principal.username")
     public String findUserByUsername(Model model, @PathVariable String username) {
         model.addAttribute("user", userRepository.findByUsername(username));
         return "home/profile";
@@ -62,13 +66,23 @@ public class UserController {
         return "redirect:/";
     }
 
+    //
     //TODO osmisliti kako da se samo odredjena polja menjaju iako ima vise atributa
     @PostMapping("/update-user")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
         model.addAttribute("", userService.update(user));
-        return "redirect:/dashboard/users";
+        return "redirect:/user/" + user.getUsername();
     }
 
+    @PostMapping("/update-user-as-admin")
+    @RequireAdmin
+    public String updateUserAsAdmin(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("", userService.update(user));
+        return "redirect:/dashboard";
+    }
+
+
+    @RequireAdmin
     @GetMapping("/users/{id}")
     public String getUpdatingUser(Model model,
                                   @PathVariable Integer id) {
@@ -77,18 +91,21 @@ public class UserController {
         return "dashboard/update-delete-user";
     }
 
+    @RequireAdmin
     @PostMapping("/user/delete")
     public String deleteUser(@ModelAttribute("user") User user) {
         userService.deleteById(user.getId());
         return "redirect:/dashboard/users";
     }
 
+    @RequireAdmin
     @RequestMapping("/create-user-page")
     public String userPage(Model model) {
         model.addAttribute("roles", roleService.findAll());
         return "dashboard/create-user";
     }
 
+    @RequireAdmin
     @PostMapping("/create-user-as-admin")
     public String createUserAsAdmin(@ModelAttribute("user") User user) {
         userService.save(user);
