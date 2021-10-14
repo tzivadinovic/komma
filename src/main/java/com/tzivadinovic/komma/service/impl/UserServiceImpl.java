@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User update(User user) {
         User existingUser = userRepository.findByUsername(user.getUsername()).orElseThrow(NoSuchElementException::new);
         user.setPassword(existingUser.getPassword());
+        user.setRoles(existingUser.getRoles());
         return userRepository.save(user);
     }
 
