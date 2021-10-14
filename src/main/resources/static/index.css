@@ -14,9 +14,6 @@ body {
     margin: 0 0 100px;
 }
 
-main {
-}
-
 footer {
     background-color: #3B4252 !important;
     position: absolute;
@@ -61,6 +58,25 @@ footer {
 .no-acc {
     font-size: 15px;
     color: #434C5E;
+}
+
+.no-acc a {
+    color: #5E81AC;
+}
+
+#username {
+    color: #6c757d;
+    font-family: "Fira Code Medium", sans-serif !important;
+}
+
+#username:disabled + label {
+    color: white;
+    font-family: "Fira Code Medium", sans-serif !important;
+}
+
+#username:disabled {
+    border-bottom: 0.01em solid #9e9e9e !important;
+    box-shadow: 0 0.01em 0 0 #9e9e9e !important;
 }
 
 input[type="text"],
@@ -293,6 +309,26 @@ input[type="email"]:invalid {
 .dashboard-content-dash {
     transform: translateY(calc(50vh - 90%));
     color: #ECEFF4;
+}
+
+.update-delete-category {
+    width: 100%;
+    transform: translateY(calc(31vh - 50%));
+}
+
+.update-delete-category form {
+    transform: translateX(calc(50vh - 20%));
+    width: 50%;
+}
+
+.update-delete-tag {
+    width: 100%;
+    transform: translateY(calc(31vh - 50%));
+}
+
+.update-delete-tag form {
+    transform: translateX(calc(50vh - 20%));
+    width: 50%;
 }
 
 .blue-grey.darken-1 {
@@ -552,6 +588,6 @@ title {
     color: #87444b;
 }
 
-.post-img img{
+.post-img img {
     max-width: 100%;
 }

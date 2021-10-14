@@ -69,7 +69,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User update(User user) {
         User existingUser = userRepository.findByUsername(user.getUsername()).orElseThrow(NoSuchElementException::new);
-        user.setDisplayName(createDefaultDisplayName(existingUser.getFirstName(), existingUser.getLastName()));
         user.setPassword(existingUser.getPassword());
         return userRepository.save(user);
     }
