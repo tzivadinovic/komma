@@ -44,7 +44,9 @@
                 <td th:text="${post.user.displayName}"></td>
                 <td th:text="${post?.category?.name}"></td>
                 <td th:text="${post.title}"></td>
-                <td th:text="${post.tags}"></td>
+                <td>
+                    <span th:each="tag : ${post.tags}" th:text="${tag.name}" class="chip"></span>
+                </td>
                 <td>
                     <form th:action="@{/update-post-status/{id}(id=${post.id})}" method="post">
                         <div class="switch">
