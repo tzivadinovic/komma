@@ -9,7 +9,6 @@ import com.tzivadinovic.komma.service.PostService;
 import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

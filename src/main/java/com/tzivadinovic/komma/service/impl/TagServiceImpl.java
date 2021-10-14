@@ -1,7 +1,6 @@
 package com.tzivadinovic.komma.service.impl;
 
 import com.tzivadinovic.komma.entity.Tag;
-import com.tzivadinovic.komma.repository.PostRepository;
 import com.tzivadinovic.komma.repository.TagRepository;
 import com.tzivadinovic.komma.service.TagService;
 import lombok.RequiredArgsConstructor;

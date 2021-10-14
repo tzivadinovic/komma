@@ -48,9 +48,9 @@ public class MediaServiceImpl implements MediaService {
 
         String filename = getUploadedFilename(file);
         String contentType = file.getContentType();
-        Path path = Paths.get(mediaUploadPath, "static/media", filename);
+        Path path = Paths.get(mediaUploadPath, "static", filename);
         String pathStr = path.toString();
-        String uri = Paths.get("files", filename).toString();
+        String uri = Paths.get("static", filename).toString();
 
         Optional<Media> existingMedia = mediaRepository.findByUri(uri);
         if (existingMedia.isPresent()) return existingMedia.get();

@@ -4,7 +4,10 @@ import com.tzivadinovic.komma.entity.Media;
 import com.tzivadinovic.komma.service.MediaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -14,11 +17,6 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RequiredArgsConstructor
 public class RestMediaController {
     private final MediaService mediaService;
-
-//    @PostMapping
-//    public ResponseEntity<Media> saveMedia(@RequestBody Media media) {
-//        return ResponseEntity.ok(mediaService.save(media));
-//    }
 
     @PostMapping
     public ResponseEntity<Media> uploadMedia(@RequestParam(value = "file", required = false) MultipartFile file) {

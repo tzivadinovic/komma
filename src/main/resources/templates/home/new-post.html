@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
     <link href="index.css" rel="stylesheet">
 </head>
 <body>
@@ -57,8 +57,29 @@
     </div>
 </div>
 <script>
-    var simplemde = new SimpleMDE({
+    var easymde = new EasyMDE({
         element: document.getElementById("content"),
+        uploadImage: true,
+        errorCallback: prompt,
+        imageMaxSize: 1024*1024*5,
+        imageUploadFunction: (file, onSuccess, onError) => {
+            const formData = new FormData();
+            formData.append("file", file);
+            console.log(file)
+            fetch("/api/media", {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    onSuccess("/" + res.uri);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    onError(error);
+                });
+        }
     });
 </script>
 <script>
@@ -70,7 +91,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const tagsInput = document.getElementById("tags2");
-        tagsInput.addEventListener("change", console.log(tagsInput.nodeValue));
         const tags = document.querySelectorAll(".chips");
         fetch("/api/tags").then(res => res.json())
             .then(res => {
