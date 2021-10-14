@@ -36,7 +36,7 @@
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="username" type="text" class="validate" name="username">
+                    <input id="username" type="text" class="validate" name="username" th:field="*{username}">
                     <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                           class="alert red white-text"></span>
                     <label for="username">Username</label>

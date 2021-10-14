@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -45,10 +46,15 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-    public String createUser(@ModelAttribute("dto") @Valid RegisterDTO dto, BindingResult result) {
-        if (result.hasErrors()) return "register/register";
-        userService.save(dto);
-        return "redirect:/";
+    public String createUser(@ModelAttribute("dto") @Valid RegisterDTO dto, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.dto", result);
+            redirectAttributes.addFlashAttribute("dto", dto);
+            return "register/register";
+        } else {
+            userService.save(dto);
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/user/{username}")

@@ -11,7 +11,7 @@ public class RegisterDTO {
     private String firstName;
     @NotEmpty(message = "Last name must not be empty")
     private String lastName;
-    @Size(min = 8, message = "Username must be at least 8 characters long")
+    @NotEmpty(message = "Username must not be empty")
     private String username;
     @NotEmpty(message = "Email must not be empty")
     private String email;
