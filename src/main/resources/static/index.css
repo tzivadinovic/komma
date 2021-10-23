@@ -9,8 +9,13 @@ html {
     min-height: 100%;
 }
 
+/*@font-face {*/
+/*    font-family: 'Omnes'; !*a name to be used later*!*/
+/*    src: url('fonts/OmnesLatin-SemiBold-2ee0127433dca84e1c23.woff2'); !*URL to font*!*/
+/*}*/
+
 body {
-    font-family: "Fira Code Medium", sans-serif;
+    font-family: "Fira Code", sans-serif;
     margin: 0 0 100px;
 }
 
